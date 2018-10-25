@@ -1,0 +1,118 @@
+<div class="Home">
+  <div class="color">
+    <h1 class="title">TurnApp</h1>
+  </div>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-6" [style.marginTop.%]="5">
+        <div
+        id="cr"
+        class="carousel slide"
+        data-ride="carousel"
+        [ngStyle]="{'boxShadow': '10px 10px 10px grey'}">
+          <ol class="carousel-indicators">
+            <li data-target="#cr" data-slide-to="0" class="active"></li>
+            <li data-target="#cr" data-slide-to="1"></li>
+            <li data-target="#cr" data-slide-to="2"></li>
+            <li data-target="#cr" data-slide-to="3"></li>
+            <li data-target="#cr" data-slide-to="4"></li>
+            <li data-target="#cr" data-slide-to="5"></li>
+            <li data-target="#cr" data-slide-to="6"></li>
+            <li data-target="#cr" data-slide-to="7"></li>
+            <li data-target="#cr" data-slide-to="8"></li>
+          </ol>
+
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src={{biologia}}
+              class="img-responsive"
+              alt="biologia"/>
+            </div>
+            <div class="item">
+              <img src={{cafe_campus}}
+              class="img-responsive"
+              alt="cafe_campus"/>
+            </div>
+            <div class="item">
+              <img src={{ciencias_agrarias}}
+              class="img-responsive"
+              alt="ciencias_agrarias"/>
+            </div>
+            <div class="item">
+              <img src={{ciencias_economicas}}
+              class="img-responsive"
+              alt="ciencias_economicas"/>
+            </div>
+            <div class="item">
+              <img src={{ciencias_humanas}}
+              class="img-responsive"
+              alt="ciencias_humanas"/>
+            </div>
+            <div class="item">
+              <img src={{comedor_central}}
+              class="img-responsive"
+              alt="comedor_central"/>
+            </div>
+            <div class="item">
+              <img src={{hemeroteca}}
+              class="img-responsive"
+              alt="hemeroteca"/>
+            </div>
+            <div class="item">
+              <img src={{matematicas}}
+              class="img-responsive"
+              alt="matematicas"/>
+            </div>
+            <div class="item">
+              <img src={{odontologia}}
+              class="img-responsive"
+              alt="odontologia"/>
+            </div>
+          </div>
+
+          <a class="left carousel-control" href="#cr" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#cr" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="cont">
+          <h2 [style.color]="'#337AB7'">Ingresar</h2>
+          <hr/>
+          <div
+          class="input-group"
+          [style.marginTop.%]="25">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input #cedula id="email" type="text" class="form-control" ref="cedula" placeholder="Cédula"/>
+          </div>
+
+          <button
+            type="button" name="ingresar" class="btn btn-success btn-lg btn-block"
+            [style.marginTop.%]="5" (click)="onClick(cedula.value)" >
+            Ingresar
+          </button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="black-cont">
+    <h1 [style.color]="'grey'">About</h1>
+    <br/>
+    <p [ngStyle]="{'color':'#F8F8F8', 'fontSize':'15px', 'margin':'0% 15% 2% 5%'}">
+      TurnApp es una aplicación con la cual los usuarios de los
+      restaurantes de la Universidad Nacional de Colombia pueden
+      dejar a un lado las molestas filas que aquejan a toda la comunidad
+      univeritaria. Los clientes pueden solicitar un turno en la caferetía de su
+      preferencia, dependiendo del menú que en ésta se sirva, la cantidad
+      de almuerzos disponibles y la cantidad de turnos que tiene asignada.
+    </p>
+  </div>
+</div>
+
