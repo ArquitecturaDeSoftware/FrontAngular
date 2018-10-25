@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Directive} from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { Router } from '@angular/router'
+import { IdUserService } from "../id-user.service";
 
 @Component({
   selector: 'app-home-view',
@@ -9,8 +10,8 @@ import { Router } from '@angular/router'
 
 export class HomeViewComponent implements OnInit {
 
-  id_user = Math.ceil(1000 + Math.random() * (9999 - 1000));
-  id_user_ced : String;
+  user_def = Math.ceil(1000 + Math.random() * (9999 - 1000));
+  user_ced : any;
   body_img = "../../assets/Others/body.jpg"
   biologia = "../../assets/lunchrooms/biologia.png";
   cafe_campus = "../../assets/lunchrooms/cafe-campus.png";
@@ -24,17 +25,27 @@ export class HomeViewComponent implements OnInit {
   odontologia = "../../assets/lunchrooms/odontologia.png"
 
 
-  constructor(private router: Router) { 
+  constructor(private router: Router, private data: IdUserService) { 
     
   }
 
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+    this.data.user_ced = this.user_ced;
+    this.data.user_def = this.user_def;
+  }
+
   onClick(value){
-    this.id_user_ced = value; 
-    this.router.navigate(['lunchrooms'], )
-    console.log(this.id_user_ced);
+    this.user_ced = value; 
+    if (value != "") {
+      this.router.navigate(['lunchrooms'])
+    }
+  }
+
+  onClick2(){
+    this.router.navigate(['lunchrooms'])
   }
 
 }
