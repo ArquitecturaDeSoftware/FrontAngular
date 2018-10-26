@@ -1,33 +1,33 @@
   <!-- The Modal -->
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
+<div class="modal" id="myModal" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
-
+      
       <!-- Modal Header -->
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" (click)="onClick()">&times;</button>
+        <div class="color">
+          <h1 class="title">{{name_lunchroom}}</h1>
+        </div>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
-        <div class="color">
-          <h1 class="title">{{name_lunchroom}}</h1>
-        </div>
         <div class="container" [style.marginTop.%]="2">
           <div class="row">
             <div class="col-md-4">
             </div>
             <div class="col-md-4">
               <div class="thumbnail">
-                <img src={{src}}
-                class="small"
+                <img src={{src[index]}}
+                class="img-responsive"
                 alt={{name}}/>
               </div>
             </div>
           </div>
           <div class="lunchroom-container">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <app-menu-component 
                 [soup] = soup
                 [appetizer] = appetizer
@@ -37,7 +37,7 @@
                 [dessert] = dessert
                 [salad] = salad></app-menu-component>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <app-price-time-ticket-info-component></app-price-time-ticket-info-component>
             <!--    <Link to={{ pathname: `tickets/`, state: { name_lunch:this.props.name, 
                                                           i:this.props.i, id_lunchroom:this.props.id_lunchroom, 
@@ -49,6 +49,14 @@
                     Pedir turno
                   </button>
                 </Link>  -->
+                <button type="button"
+                  class="btn btn-primary btn-lg btn-block"
+                  name="button"
+                  [style.marginBottom.%]="2"
+                  data-dismiss="modal"
+                  (click)="routeTickets()">
+                    Pedir turno
+                </button>
               </div>
             </div>
           </div>
@@ -57,7 +65,7 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="onClick()">Close</button>
       </div>
 
     </div>

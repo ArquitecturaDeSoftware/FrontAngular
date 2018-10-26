@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { IdUserService } from "../id-user.service";
 import axios from "axios";
 
@@ -10,11 +11,12 @@ import axios from "axios";
 })
 export class ModalLunchroomComponentComponent implements OnInit {
 
+  @Output () close = new EventEmitter(); 
+  @Input () index;
   @Input () id_lunchroom;
   @Input () name_lunchroom;
 
-  src:String;
-  user_id = this.data.user_id;
+  src = this.data.src;
 
   soup;
   appetizer;
@@ -24,10 +26,25 @@ export class ModalLunchroomComponentComponent implements OnInit {
   dessert;
   salad;
 
-  constructor(private data: IdUserService) { }
+  constructor(private router: Router, private data: IdUserService) { }
 
   ngOnInit() {
-    console.log(this.name_lunchroom);
+    this.menusByLunchroom()
+  }
+
+  onClick(){
+    this.close.emit(null);
+  }
+
+  routeTickets(){
+    this.onClick();   
+    this.data.name_lunchroom = this.name_lunchroom;
+    this.data.index = this.index;
+    this.data.id_lunchroom = this.id_lunchroom;
+    this.router.navigate(['tickets']);
+  }
+
+  menusByLunchroom(){
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
       method: 'post',

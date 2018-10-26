@@ -9,17 +9,12 @@ import axios from "axios";
 })
 export class LunchroomsViewComponent implements OnInit {
 
-  user_id:any;
-  name_lunchroom:String;
+  constructor(private data: IdUserService) {  
+  }
 
-  constructor(private data: IdUserService) {
-    
-   }
-
-  ngOnInit() {
-    this.user_id = this.data.user_id;
+  ngOnInit() {    
     this.getLunchrooms();
-}
+  }
 
   getLunchrooms(){
     axios({

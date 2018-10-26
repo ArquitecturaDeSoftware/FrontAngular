@@ -10,14 +10,19 @@ export class LunchroomComponentComponent implements OnInit {
 
   @Input () id_lunchroom;
   @Input () name_lunchroom;
+  @Input () num_ed;
+  @Input () index;
+
+  active = false;
+  src = this.data.src;
 
   constructor(private data: IdUserService) { }
 
-  ngOnInit() {    
+  ngOnInit() {        
   }
 
   onClick(){
-    
+    this.active = true;
   }
 
 }

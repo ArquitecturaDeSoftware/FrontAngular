@@ -11,18 +11,7 @@ import { IdUserService } from "../id-user.service";
 export class HomeViewComponent implements OnInit {
 
   user_def = Math.ceil(1000 + Math.random() * (9999 - 1000));
-  body_img = "../../assets/Others/body.jpg"
-  biologia = "../../assets/lunchrooms/biologia.png";
-  cafe_campus = "../../assets/lunchrooms/cafe-campus.png";
-  ciencias_agrarias = "../../assets/lunchrooms/ciencias-agrarias.png"
-  ciencias_economicas = "../../assets/lunchrooms/ciencias-economicas.png"
-  ciencias_humanas = "../../assets/lunchrooms/ciencias-humanas.png"
-  comedor_central = "../../assets/lunchrooms/comedor-central.png"
-  geologia = "../../assets/lunchrooms/geologia.png"
-  hemeroteca = "../../assets/lunchrooms/hemeroteca.png"
-  matematicas = "../../assets/lunchrooms/matematicas.png"
-  odontologia = "../../assets/lunchrooms/odontologia.png"
-
+  src = this.data.src;
 
   constructor(private router: Router, private data: IdUserService) { 
     
