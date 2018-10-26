@@ -11,7 +11,6 @@ import { IdUserService } from "../id-user.service";
 export class HomeViewComponent implements OnInit {
 
   user_def = Math.ceil(1000 + Math.random() * (9999 - 1000));
-  user_ced : any;
   body_img = "../../assets/Others/body.jpg"
   biologia = "../../assets/lunchrooms/biologia.png";
   cafe_campus = "../../assets/lunchrooms/cafe-campus.png";
@@ -32,19 +31,15 @@ export class HomeViewComponent implements OnInit {
   ngOnInit() {
   }
 
-  ngOnDestroy() {
-    this.data.user_ced = this.user_ced;
-    this.data.user_def = this.user_def;
-  }
-
   onClick(value){
-    this.user_ced = value; 
+    this.data.user_id = value; 
     if (value != "") {
       this.router.navigate(['lunchrooms'])
     }
   }
 
   onClick2(){
+    this.data.user_id = this.user_def;
     this.router.navigate(['lunchrooms'])
   }
 

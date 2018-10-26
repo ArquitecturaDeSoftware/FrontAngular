@@ -9,19 +9,17 @@ import axios from "axios";
 })
 export class LunchroomsViewComponent implements OnInit {
 
-  user_ced:any;
-  user_def:any;
-  all_lunchrooms = []
+  user_id:any;
+  name_lunchroom:String;
 
-  constructor(private data: IdUserService) { }
+  constructor(private data: IdUserService) {
+    
+   }
 
   ngOnInit() {
-    this.user_ced = this.data.user_ced;
-    this.user_def = this.data.user_def;
-    console.log("Exito");
-    
+    this.user_id = this.data.user_id;
     this.getLunchrooms();
-  }
+}
 
   getLunchrooms(){
     axios({
@@ -42,9 +40,7 @@ export class LunchroomsViewComponent implements OnInit {
           `
       }
     }).then(result => {
-        this.data.all_lunchrooms = result.data.data.allLunchrooms;
-        console.log(this.data.all_lunchrooms);
-        
+        this.data.all_lunchrooms = result.data.data.allLunchrooms;           
     }).catch(error => {
       console.log(error)
     });

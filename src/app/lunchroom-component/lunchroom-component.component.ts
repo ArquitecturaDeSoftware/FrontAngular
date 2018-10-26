@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { IdUserService } from "../id-user.service";
 
 @Component({
   selector: 'app-lunchroom-component',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LunchroomComponentComponent implements OnInit {
 
-  constructor() { }
+  @Input () id_lunchroom;
+  @Input () name_lunchroom;
 
-  ngOnInit() {
+  constructor(private data: IdUserService) { }
+
+  ngOnInit() {    
+  }
+
+  onClick(){
+    
   }
 
 }

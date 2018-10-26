@@ -7,8 +7,7 @@ export class IdUserService {
 
   constructor() { }
   
-  user_def:any;
-  user_ced:any;
-  all_lunchrooms = {};
+  user_id:any;
+  all_lunchrooms = [];
 
 }
