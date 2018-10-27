@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeViewComponent } from './home-view/home-view.component'
-import { LunchroomsViewComponent } from './lunchrooms-view/lunchrooms-view.component'
-import { TicketViewComponent } from "./ticket-view/ticket-view.component";
-import { AdminViewComponent } from './admin-view/admin-view.component';
+import { ViewHomeComponent} from './view-home/view-home.component'
+import { ViewLunchroomsComponent } from './view-lunchrooms/view-lunchrooms.component'
+import { ViewTicketComponent } from "./view-ticket/view-ticket.component";
+import { ViewAdminComponent } from './view-admin/view-admin.component';
+import { ViewCommentsComponent } from "./view-comments/view-comments.component";
 
 const routes: Routes = [
-  { path: '', component: HomeViewComponent },
-  { path: 'lunchrooms', component: LunchroomsViewComponent },
-  { path: 'tickets', component: TicketViewComponent },
-  { path: 'admin', component: AdminViewComponent },
-  { path: '**', component: HomeViewComponent}
+  { path: '', component: ViewHomeComponent },
+  { path: 'lunchrooms', component: ViewLunchroomsComponent },
+  { path: 'tickets', component: ViewTicketComponent },
+  { path: 'admin', component: ViewAdminComponent },
+  { path: 'comments', component: ViewCommentsComponent},
+  { path: '**', redirectTo: ''}
 ];
 
 @NgModule({
@@ -18,4 +20,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [HomeViewComponent, LunchroomsViewComponent, TicketViewComponent, AdminViewComponent]
+export const routingComponents = [ViewCommentsComponent, ViewHomeComponent, ViewLunchroomsComponent, ViewTicketComponent, ViewAdminComponent]

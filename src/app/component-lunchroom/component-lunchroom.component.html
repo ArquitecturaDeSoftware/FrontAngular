@@ -1,0 +1,22 @@
+<div class="col-md-3">
+  <div class="hovereffect">
+    <div class="thumbnail">
+      <img class="img-responsive"
+        src={{src[index]}}
+        alt={{name_lunchroom}}
+        (click)="onClick()"
+        data-toggle="modal"
+        data-target="#myModal"/>
+      <div class="caption">
+        <h4 [style.color]="'#337ab7'">{{name_lunchroom}}</h4>
+        <p>Edificio: {{num_ed}}</p>
+        <app-component-lunchroom-modal 
+          *ngIf="active" 
+          (close)="active = false" 
+          [id_lunchroom]=id_lunchroom 
+          [name_lunchroom] = name_lunchroom
+          [index] = index></app-component-lunchroom-modal>
+      </div>
+    </div>
+  </div>
+</div>

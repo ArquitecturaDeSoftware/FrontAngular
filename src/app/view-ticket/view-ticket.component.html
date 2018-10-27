@@ -1,0 +1,55 @@
+<div class="color">
+  <h1 class="title">Turno solicitado en {{name_lunchroom}} </h1>
+</div>
+<div class="container">
+  <div class="row" [style.marginTop.%]="2">
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <img src={{src[index]}}
+        alt={{name_lunchroom}}/>
+      </div>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+      <div class="ticket-container">
+        <h1 class="ticket-text">{{"Turno: " + id_ticket}}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="lunchroom-container">
+  <div class="row">
+    <div class="col-md-6">
+      <app-component-lunchroom-menu 
+        [soup] = soup
+        [appetizer] = appetizer
+        [main_course] = main_course
+        [protein] = protein
+        [juice] = juice
+        [dessert] = dessert
+        [salad] = salad></app-component-lunchroom-menu>
+    </div>
+    <div class="col-md-6">
+      <app-component-lunchroom-price></app-component-lunchroom-price>
+      <button type="button"
+        class="btn btn-danger btn-lg btn-block"
+        name="cancelar"
+        [style.marginBottom.%]="2"
+        (click)="onClick()">
+          cancelar turno
+      </button>
+      <!-- <Link to={{ pathname: `/lunchrooms`, state: { id_user:this.props.location.state.id_user} }}>
+        <button type="button"
+        class="btn btn-danger btn-lg btn-block"
+        name="cancelar"
+        [style.marginBottom.%]="2"
+        onClick={this.handlerClick}>
+          cancelar turno
+        </button>
+      </Link> -->
+
+    </div>
+  </div>
+</div>
