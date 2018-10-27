@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
-import { async } from 'rxjs/internal/scheduler/async';
 
 @Component({
   selector: 'app-admin-view',
@@ -13,14 +12,18 @@ export class AdminViewComponent implements OnInit {
   id_lunchroom = "5bce0d459804009c34a97474";
   current_Shift:String;
 
-  constructor() { }
+  constructor() { 
+    
+  }
 
   ngOnInit() { 
     this.getNextTicket()
+    setInterval(data => {
+      this.getNextTicket2();
+    },10000)
   }
 
   getNextTicket(){
-    console.log("next");
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
       method: 'post',
@@ -47,7 +50,6 @@ export class AdminViewComponent implements OnInit {
   }
 
   updateTicket(status){ 
-    console.log("update");   
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
       method: 'post',
@@ -69,7 +71,6 @@ export class AdminViewComponent implements OnInit {
   }
 
   updateTicket2(status){ 
-    console.log("update");   
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
       method: 'post',
@@ -92,7 +93,6 @@ export class AdminViewComponent implements OnInit {
   }
 
   getNextTicket2(){
-    console.log("next");
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
       method: 'post',
@@ -122,7 +122,10 @@ export class AdminViewComponent implements OnInit {
   }
 
   clickStats(){
-    
+
   }
+
+  
+  
 
 }
