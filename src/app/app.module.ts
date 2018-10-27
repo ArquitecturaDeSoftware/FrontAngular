@@ -16,8 +16,7 @@ import { ModalLunchroomComponentComponent } from './modal-lunchroom-component/mo
     LunchroomComponentComponent,
     MenuComponentComponent,
     PriceTimeTicketInfoComponentComponent,
-    ModalLunchroomComponentComponent,
-    
+    ModalLunchroomComponentComponent,    
   ],
   imports: [
     BrowserModule,

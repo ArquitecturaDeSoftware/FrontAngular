@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { IdUserService } from "../id-user.service";
 import axios from "axios";
@@ -32,12 +32,14 @@ export class ModalLunchroomComponentComponent implements OnInit {
     this.menusByLunchroom()
   }
 
-  onClick(){
+  ngOnDestroy(){
+  }
+
+  clickClose(){
     this.close.emit(null);
   }
 
-  routeTickets(){
-    this.onClick();   
+  pedirTurno(){   
     this.data.name_lunchroom = this.name_lunchroom;
     this.data.index = this.index;
     this.data.id_lunchroom = this.id_lunchroom;

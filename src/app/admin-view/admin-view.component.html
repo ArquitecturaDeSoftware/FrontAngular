@@ -1,0 +1,54 @@
+<div class="color">
+  <h1 class="title">Restaurante {{id_lunchroom}}</h1>
+</div>
+<div class="container">
+  <div class="row" [style.marginTop.%]="3">
+    <div class="col-md-4">
+      <div class="ticket-container">
+        <h1 class="ticket-text">
+          {{ current_Shift != -1 ? "Turno Actual : " + current_Shift : "No hay más turnos" }}        </h1>
+      </div>
+    </div>
+    <div
+    class="col-md-4"
+    [ngStyle]="{'marginTop': '3%', 'marginLeft':'3%'}">
+      <button
+      type="button"
+      name="Siguiente"
+      class="btn btn-danger btn-lg"
+      (click)="changeTicket()">
+        Siguiente Turno
+      </button>
+    </div>
+  </div>
+</div>
+<div class="lunchroom-container">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- <EditMenuComponent
+      soup={this.menu.soup}
+      appetizer={this.menu.appetizer}
+      main_course={this.menu.main_course}
+      protein={this.menu.protein}
+      juice={this.menu.juice}
+      dessert={this.menu.dessert}
+      salad={this.menu.salad}
+      /> -->
+    </div>
+    <div class="col-md-6">
+      <!-- <PriceNTimeInfoComponent
+      price={this.info.price}
+      line={this.info.line}
+      currentTime={this.props.currentTime}
+      /> -->
+      <button
+      type="button"
+      name="estadisticas"
+      class="btn btn-primary btn-lg btn-block"
+      [ngStyle]="{'marginTop': '2%', 'marginBottom':'2%'}"
+      (click)="clickStats()">
+        Estadísticas
+      </button>
+    </div>
+  </div>
+</div>

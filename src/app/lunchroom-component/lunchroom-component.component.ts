@@ -18,11 +18,12 @@ export class LunchroomComponentComponent implements OnInit {
 
   constructor(private data: IdUserService) { }
 
-  ngOnInit() {        
+  ngOnInit() {            
   }
 
   onClick(){
     this.active = true;
+    this.data.id_lunchroom = this.id_lunchroom;    
   }
 
 }

@@ -10,6 +10,7 @@ import axios from "axios";
 export class PriceTimeTicketInfoComponentComponent implements OnInit {
 
   user_id = this.data.user_id;
+  id_lunchroom = this.data.id_lunchroom
   line:any;
   time:number;
 
@@ -26,7 +27,7 @@ export class PriceTimeTicketInfoComponentComponent implements OnInit {
       data: {
         query: `
           query{
-            ticketsByRestaurant(id_restaurant:"5bce0b3a9804009c34a9746d"){
+            ticketsByRestaurant(id_restaurant:"${this.id_lunchroom}"){
               id
               lunchroomId
               userid
