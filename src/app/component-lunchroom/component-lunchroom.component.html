@@ -8,7 +8,10 @@
         data-toggle="modal"
         data-target="#myModal"/>
       <div class="caption">
-        <h4 [style.color]="'#337ab7'">{{name_lunchroom}}</h4>
+        <div 
+          [ngStyle]="{'color': '#337ab7', 'height':'50px', 'display':'table', 'width':'100%' }" >
+          <h4 [ngStyle]="{'vertical-align':'middle', 'display':'table-cell'}" >{{name_lunchroom}}</h4>
+        </div>
         <p>Edificio: {{num_ed}}</p>
         <app-component-lunchroom-modal 
           *ngIf="active" 
