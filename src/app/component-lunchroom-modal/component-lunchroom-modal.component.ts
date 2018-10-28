@@ -37,14 +37,14 @@ export class ComponentLunchroomModalComponent implements OnInit {
   }
 
   pedirTurno(){   
-    this.service.name_lunchroom = this.name_lunchroom;
-    this.service.index = this.index;
-    this.service.id_lunchroom = this.id_lunchroom;
-    this.router.navigate(['tickets']);
+    this.service.set("name_lunchroom", this.name_lunchroom);
+    this.service.set("index", this.index);
+    this.service.set("id_lunchroom", this.id_lunchroom);
+    this.createTicket()
   }
 
   verComentarios(){
-    this.service.id_lunchroom = this.id_lunchroom;
+    this.service.set("id_lunchroom", this.id_lunchroom);
     this.router.navigate(['comments']);
   }
 
@@ -75,6 +75,31 @@ export class ComponentLunchroomModalComponent implements OnInit {
         this.juice = result.data.data.menusByRestaurant[0].juice
         this.dessert = result.data.data.menusByRestaurant[0].dessert
         this.salad = result.data.data.menusByRestaurant[0].salad        
+    }).catch(error => {
+      console.log(error)
+    });
+  }
+
+  createTicket(){
+    axios({
+      url: 'http://35.229.97.157:5000/graphql/?',
+      method: 'post',
+      data: {
+        query: `
+            mutation{
+              createTicket(ticket:{
+                lunchroomId: "${this.service.get("id_lunchroom")}"
+                userId: ${this.service.get("user_id")}
+                price: ${(this.service.get("id_user") > 9999 ? 4800 : 6500)}
+              }){
+                id
+              }
+            }
+          `
+      }
+    }).then(result => {
+        this.service.set("id_ticket", result.data.data.createTicket.id);
+        this.router.navigate(['tickets']);
     }).catch(error => {
       console.log(error)
     });

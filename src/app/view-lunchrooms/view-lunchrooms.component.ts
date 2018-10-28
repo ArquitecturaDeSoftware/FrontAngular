@@ -13,7 +13,7 @@ export class ViewLunchroomsComponent implements OnInit {
   }
 
   ngOnInit() {    
-    this.getLunchrooms();
+    this.getLunchrooms();    
   }
 
   getLunchrooms(){
@@ -32,7 +32,7 @@ export class ViewLunchroomsComponent implements OnInit {
               building
             }
           }
-          `
+        `
       }
     }).then(result => {
         this.service.all_lunchrooms = result.data.data.allLunchrooms;                   

@@ -10,13 +10,13 @@ import { IdUserService } from "../id-user.service";
 })
 export class ViewTicketComponent implements OnInit {
 
-  name_lunchroom = this.service.name_lunchroom;
-  id_lunchroom = this.service.id_lunchroom;
+  name_lunchroom = this.service.get("name_lunchroom");
+  id_lunchroom = this.service.get("id_lunchroom");
   src = this.service.src;
-  index = this.service.index;
-  id_user = this.service.user_id;
+  index = this.service.get("index");
+  id_user = this.service.get("user_id");
   price_user = (this.id_user > 9999 ? 4800 : 6500);
-  id_ticket = 0;
+  id_ticket:String;
 
   soup;
   appetizer;
@@ -30,7 +30,8 @@ export class ViewTicketComponent implements OnInit {
   }
 
   ngOnInit() {    
-    this.createTicket()
+    this.id_ticket = this.service.get("id_ticket")
+    console.log(this.id_ticket);
     this.menuByLunchroom()
   }
 
@@ -41,7 +42,7 @@ export class ViewTicketComponent implements OnInit {
       data: {
         query: `
           mutation{
-            updateTicket(id_ticket: "${this.id_ticket}", ticket:{
+            updateTicket(id_ticket: "${this.service.get("id_ticket")}", ticket:{
               status: "ERROR"
             }){
               id
@@ -50,31 +51,7 @@ export class ViewTicketComponent implements OnInit {
         `
       }
     }).then(result => {
-    }).catch(error => {
-      console.log(error)
-    });
-    this.router.navigate(['lunchrooms'])
-  }
-
-  createTicket(){
-    axios({
-      url: 'http://35.229.97.157:5000/graphql/?',
-      method: 'post',
-      data: {
-        query: `
-            mutation{
-              createTicket(ticket:{
-                lunchroomId: "${this.id_lunchroom}"
-                userId: ${(this.id_user)}
-                price: ${(this.price_user)}
-              }){
-                id
-              }
-            }
-          `
-      }
-    }).then(result => {
-        this.id_ticket = result.data.data.createTicket.id;
+      this.router.navigate(['lunchrooms'])
     }).catch(error => {
       console.log(error)
     });

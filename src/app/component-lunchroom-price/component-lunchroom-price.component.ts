@@ -9,8 +9,8 @@ import axios from "axios";
 })
 export class ComponentLunchroomPriceComponent implements OnInit {
 
-  user_id = this.service.user_id;
-  id_lunchroom = this.service.id_lunchroom
+  user_id = this.service.get("user_id");
+  id_lunchroom = this.service.get("id_lunchroom");
   line:any;
   time:number;
 

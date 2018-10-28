@@ -23,7 +23,7 @@ export class ComponentLunchroomComponent implements OnInit {
 
   onClick(){
     this.active = true;
-    this.service.id_lunchroom = this.id_lunchroom;    
+    this.service.set("id_lunchroom", this.id_lunchroom);    
   }
 
 }

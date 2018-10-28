@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-
 @Injectable({
   providedIn: 'root'
 })
 export class IdUserService {
 
-  constructor() { }
-  
   user_id:any;
   all_lunchrooms = [];
   src = ["../assets/lunchrooms/geologia.png",
@@ -23,4 +20,14 @@ export class IdUserService {
   id_lunchroom:any;
   index:any;
 
+  constructor() { }
+
+  set(variable, value){
+    sessionStorage.setItem(variable, `${value}`)
+  }
+
+  get(variable){
+    return sessionStorage.getItem(variable) as any;
+  }
+  
 }

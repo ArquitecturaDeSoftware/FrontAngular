@@ -11,30 +11,28 @@
         [email_author] = comment.author_email
         [text] = comment.text></app-component-comment>
     </div>
-    <!-- { this.comments.map(comment =>
-      <CommentComponent
-      key={comment.id}
-      text={comment.text}
-      name={comment.author_name}
-      email={comment.author_email}
-      avatar={avatar}/>) } -->
     <div class="col-md-6" [style.marginTop.%]="5">
-    <h3>Publicar un comentario</h3>
-    <form>
-      <div class="form-group">
-       <label htmlFor="name">Nombre</label>
-       <input type="text" class="form-control" id="nombre"/>
-      </div>
-      <div class="form-group">
-       <label htmlFor="email">Correo</label>
-       <input type="text" class="form-control" id="email"/>
-      </div>
-      <div class="form-group">
-       <label htmlFor="msg">Mensaje</label>
-       <textarea class="form-control" rows="5" id="msg"></textarea>
-      </div>
-      <button type="submit" class="btn btn-default">Publicar</button>
-    </form>
+      <h3>Publicar un comentario</h3>
+      <form>
+        <div class="form-group">
+          <label htmlFor="name">Nombre</label>
+          <input #nombre type="text" class="form-control" id="nombre"/>
+        </div>
+        <div class="form-group">
+          <label htmlFor="email">Correo</label>
+          <input #correo type="text" class="form-control" id="email"/>
+        </div>
+        <div class="form-group">
+          <label htmlFor="msg">Mensaje</label>
+          <textarea #mensaje class="form-control" rows="5" id="msg"></textarea>
+        </div>
+        <button 
+          type="button" 
+          class="btn btn-default"
+          (click)="publicarComentario(nombre.value, correo.value, mensaje.value)">
+          Publicar
+        </button>
+      </form>
     </div>
   </div>
 </div>
