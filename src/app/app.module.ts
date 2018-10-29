@@ -9,6 +9,7 @@ import { ComponentLunchroomMenuComponent } from './component-lunchroom-menu/comp
 import { ComponentLunchroomPriceComponent } from './component-lunchroom-price/component-lunchroom-price.component';
 import { ComponentLunchroomModalComponent } from './component-lunchroom-modal/component-lunchroom-modal.component';
 import { ComponentCommentComponent } from './component-comment/component-comment.component';
+import { ComponentAdminEditmenuComponent } from './component-admin-editmenu/component-admin-editmenu.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ComponentCommentComponent } from './component-comment/component-comment
     ComponentLunchroomPriceComponent,
     ComponentLunchroomModalComponent,
     ComponentCommentComponent,
+    ComponentAdminEditmenuComponent,
   ],
   imports: [
     BrowserModule,

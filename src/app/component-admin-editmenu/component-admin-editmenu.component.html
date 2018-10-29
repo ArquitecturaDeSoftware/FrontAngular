@@ -1,0 +1,37 @@
+<div class="menu-container">
+  <h3 [style.color]="'#337AB7'">Menú</h3>
+  <form>
+    <div class="form-group">
+      <label htmlFor="soup" [style.color]="'#32CD32'">Sopa</label>
+      <input #soup_id type="text" class="form-control" ref="soup" value={{soup}} />
+    </div>
+    <div class="form-group">
+      <label htmlFor="appetizer" [style.color]="'#32CD32'">Principio</label>
+      <input #appetizer_id type="text" class="form-control" ref="appetizer" value={{appetizer}} />
+    </div>
+    <div class="form-group">
+      <label htmlFor="main_course" [style.color]="'#32CD32'">Seco</label>
+      <input #main_course_id type="text" class="form-control" ref="main_course" value={{main_course}} />
+    </div>
+    <div class="form-group">
+      <label htmlFor="protein" [style.color]="'#32CD32'">Proteina</label>
+      <input #protein_id type="text" class="form-control" ref="protein" value={{protein}} />
+    </div>
+    <div class="form-group">
+      <label htmlFor="juice" [style.color]="'#32CD32'">Jugo</label>
+      <input #juice_id type="text" class="form-control" ref="juice" value={{juice}} />
+    </div>
+    <div class="form-group">
+      <label htmlFor="dessert" [style.color]="'#32CD32'">Postre</label>
+      <input #dessert_id type="text" class="form-control" ref="dessert" value={{dessert}} />
+    </div>
+    <div class="form-group">
+      <label htmlFor="salad" [style.color]="'#32CD32'">Ensalada</label>
+      <input #salad_id type="text" class="form-control" ref="salad" value={{salad}} />
+    </div>
+    <button type="button" class="btn btn-success btn-lg btn-block" [ngStyle]="{'marginTop': '2%', 'marginBottom':'2%'}"
+      (click)="actualizarMenu(soup_id.value, appetizer_id.value, main_course_id.value, protein_id.value, juice_id.value, dessert_id.value, salad_id.value)">
+      Guardar cambios
+    </button>
+  </form>
+</div>

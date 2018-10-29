@@ -4,7 +4,13 @@ import { Injectable } from '@angular/core';
 })
 export class IdUserService {
 
-  user_id:any;
+// name_lunchroom
+// index
+// id_lunchroom
+// name_ticket
+// id_ticket
+// user_id
+
   all_lunchrooms = [];
   src = ["../assets/lunchrooms/geologia.png",
   "../assets/lunchrooms/comedor-central.png",
@@ -16,10 +22,7 @@ export class IdUserService {
   "../assets/lunchrooms/hemeroteca.png",
   "../assets/lunchrooms/matematicas.png",
   "../assets/lunchrooms/odontologia.png"];
-  name_lunchroom:any;
-  id_lunchroom:any;
-  index:any;
-
+ 
   constructor() { }
 
   set(variable, value){

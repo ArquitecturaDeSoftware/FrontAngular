@@ -6,17 +6,11 @@
     <div class="col-md-4">
       <div class="ticket-container">
         <h1 class="ticket-text">
-          {{ id_current_Shift != -1 ? "Turno Actual : " + id_current_Shift : "No hay más turnos" }}        </h1>
+          {{ id_current_Shift != -1 ? "Turno Actual : " + id_current_Shift : "No hay más turnos" }} </h1>
       </div>
     </div>
-    <div
-    class="col-md-4"
-    [ngStyle]="{'marginTop': '3%', 'marginLeft':'3%'}">
-      <button
-      type="button"
-      name="Siguiente"
-      class="btn btn-danger btn-lg"
-      (click)="changeTicket()">
+    <div class="col-md-4" [ngStyle]="{'marginTop': '3%', 'marginLeft':'3%'}">
+      <button type="button" name="Siguiente" class="btn btn-danger btn-lg" (click)="changeTicket()">
         Siguiente Turno
       </button>
     </div>
@@ -25,51 +19,37 @@
 <div class="lunchroom-container">
   <div class="row">
     <div class="col-md-6">
-      <!-- <EditMenuComponent
-      soup={this.menu.soup}
-      appetizer={this.menu.appetizer}
-      main_course={this.menu.main_course}
-      protein={this.menu.protein}
-      juice={this.menu.juice}
-      dessert={this.menu.dessert}
-      salad={this.menu.salad}
-      /> -->
+      <div class="menu-container">
+        <h3 [style.color]="'#337AB7'">Información</h3>
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th [style.color]="'#32CD32'">Cobro</th>
+              <th>
+                <span>
+                  {{ (id_current_Shift == -1) ? 0 : ((id_current_Shift > 9999) ? 4800 : 6500)}} pesos
+                </span>
+              </th>
+            </tr>
+            <tr>
+              <th [style.color]="'#32CD32'">Turnos restantes</th>
+              <th>
+                <span>
+                  {{line }}
+                </span>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="col-md-6">
-        <div class="menu-container">
-            <h3 [style.color]="'#337AB7'">Información</h3>
-            <table class="table table-striped">
-              <tbody>
-                <tr>
-                  <th [style.color]="'#32CD32'">Cobro</th>
-                  <th>
-                  <span>
-                    {{ (id_current_Shift == -1) ? 0 : ((id_current_Shift > 9999) ? 4800 : 6500)}} pesos
-                  </span >
-                  </th>
-                </tr>
-                <tr>
-                  <th [style.color]="'#32CD32'">Turnos restantes</th>
-                  <th>
-                    <span>
-                      {{line }}
-                    </span >
-                  </th>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-      <!-- <PriceNTimeInfoComponent
-      price={this.info.price}
-      line={this.info.line}
-      currentTime={this.props.currentTime}
-      /> -->
-      <button
-      type="button"
-      name="estadisticas"
-      class="btn btn-primary btn-lg btn-block"
-      [ngStyle]="{'marginTop': '2%', 'marginBottom':'2%'}"
-      (click)="clickStats()">
+      <app-component-admin-editmenu [id_lunchroom]=id_lunchroom>
+      </app-component-admin-editmenu>
+    </div>
+    <div class="col-md-6">
+      <button type="button" name="estadisticas" class="btn btn-primary btn-lg btn-block" [ngStyle]="{'marginTop': '2%', 'marginBottom':'2%'}"
+        (click)="clickStats()">
         Estadísticas
       </button>
     </div>
