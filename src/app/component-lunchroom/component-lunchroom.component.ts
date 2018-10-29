@@ -12,6 +12,8 @@ export class ComponentLunchroomComponent implements OnInit {
   @Input () name_lunchroom;
   @Input () num_ed;
   @Input () index;
+  @Input () code_lunchroom;
+  
 
   active = false;
   src = this.service.src;

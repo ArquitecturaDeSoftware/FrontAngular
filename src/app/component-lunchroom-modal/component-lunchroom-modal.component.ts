@@ -15,21 +15,22 @@ export class ComponentLunchroomModalComponent implements OnInit {
   @Input () index;
   @Input () id_lunchroom;
   @Input () name_lunchroom;
+  @Input () code_lunchroom;
 
   src = this.service.src;
 
-  soup;
-  appetizer;
-  main_course;
-  protein;
-  juice;
-  dessert;
-  salad;
+  soup:String;
+  appetizer:String;
+  main_course:String;
+  protein:String;
+  juice:String;
+  dessert:String;
+  salad:String;
 
   constructor(private router: Router, private service: IdUserService) { }
 
   ngOnInit() {
-    this.menusByLunchroom()
+    this.menusByLunchroom();    
   }
 
   clickClose(){
@@ -90,14 +91,17 @@ export class ComponentLunchroomModalComponent implements OnInit {
               createTicket(ticket:{
                 lunchroomId: "${this.service.get("id_lunchroom")}"
                 userId: ${this.service.get("user_id")}
-                price: ${(this.service.get("id_user") > 9999 ? 4800 : 6500)}
+                price: ${(this.service.get("user_id") > 9999 ? 4800 : 6500)}
+                name: "${this.code_lunchroom}"
               }){
+                name
                 id
               }
             }
           `
       }
     }).then(result => {
+        this.service.set("name_ticket", result.data.data.createTicket.name);
         this.service.set("id_ticket", result.data.data.createTicket.id);
         this.router.navigate(['tickets']);
     }).catch(error => {

@@ -9,19 +9,28 @@ import axios from 'axios';
 
 export class ViewAdminComponent implements OnInit {
 
-  name_lunchroom;
-  id_lunchroom = "5bce0d459804009c34a97474";
-  current_Shift:String;
+  id_lunchroom = "5bd668a7160100435c3ba483";
+  name_current_Shift:String;
+  id_current_Shift:number;
+  flag = false;
 
   constructor() { 
-    
+    setInterval(data => {
+      this.getNextTicket()
+    },5000)
   }
 
   ngOnInit() { 
-    this.getNextTicket()
-    setInterval(data => {
-      this.getNextTicket2();
-    },5000)
+    this.getNextTicket()    
+  }
+
+  changeTicket(){
+    this.flag = true;
+    this.updateTicket("FINISHED");
+  }
+
+  clickStats(){
+
   }
 
   getNextTicket(){
@@ -33,20 +42,19 @@ export class ViewAdminComponent implements OnInit {
           query{
             nextTicket(id_restaurant:"${this.id_lunchroom}"){
               id
-              lunchroomId
-              userid
-              status
-              price
-              date
+              name
             }
           }
-          `
+        `
       }
     }).then(result => {
-        this.current_Shift = result.data.data.nextTicket.id; 
-        this.updateTicket("CALLING")  
+        this.id_current_Shift = result.data.data.nextTicket.id; 
+        this.name_current_Shift = result.data.data.nextTicket.name; 
+        if (this.flag == false) {
+          this.updateTicket("CALLING");
+        }
     }).catch(error => {
-      console.log(error)
+        this.id_current_Shift = -1;
     });
   }
 
@@ -57,7 +65,7 @@ export class ViewAdminComponent implements OnInit {
       data: {
         query: `
           mutation{
-            updateTicket(id_ticket: "${this.current_Shift}", ticket:{
+            updateTicket(id_ticket: "${this.id_current_Shift}", ticket:{
               status: "${status}"
             }){
               lunchroomId
@@ -66,63 +74,11 @@ export class ViewAdminComponent implements OnInit {
         `
       }
     }).then(result => { 
-    }).catch(error => {
-      console.log(error)
-    });
-  }
-
-  updateTicket2(status){ 
-    axios({
-      url: 'http://35.229.97.157:5000/graphql/?',
-      method: 'post',
-      data: {
-        query: `
-          mutation{
-            updateTicket(id_ticket: "${this.current_Shift}", ticket:{
-              status: "${status}"
-            }){
-              lunchroomId
-            }
-          }
-        `
+      if (this.flag == true) {
+        this.getNextTicket();
       }
-    }).then(result => { 
-      this.getNextTicket2();
     }).catch(error => {
       console.log(error)
     });
-  }
-
-  getNextTicket2(){
-    axios({
-      url: 'http://35.229.97.157:5000/graphql/?',
-      method: 'post',
-      data: {
-        query: `
-          query{
-            nextTicket(id_restaurant:"${this.id_lunchroom}"){
-              id
-              lunchroomId
-              userid
-              status
-              price
-              date
-            }
-          }
-          `
-      }
-    }).then(result => {
-        this.current_Shift = result.data.data.nextTicket.id; 
-    }).catch(error => {
-      console.log(error)
-    });
-  }
-
-  changeTicket(){
-    this.updateTicket2("FINISHED");
-  }
-
-  clickStats(){
-
   }
 }

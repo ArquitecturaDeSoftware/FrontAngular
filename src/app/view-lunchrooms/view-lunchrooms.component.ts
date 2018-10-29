@@ -12,7 +12,7 @@ export class ViewLunchroomsComponent implements OnInit {
   constructor(private service: IdUserService) {  
   }
 
-  ngOnInit() {    
+  ngOnInit() {        
     this.getLunchrooms();    
   }
 
@@ -30,6 +30,8 @@ export class ViewLunchroomsComponent implements OnInit {
               openTime
               closeTime
               building
+              code
+              principalCount
             }
           }
         `

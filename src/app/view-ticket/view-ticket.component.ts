@@ -16,7 +16,7 @@ export class ViewTicketComponent implements OnInit {
   index = this.service.get("index");
   id_user = this.service.get("user_id");
   price_user = (this.id_user > 9999 ? 4800 : 6500);
-  id_ticket:String;
+  name_ticket = this.service.get("name_ticket")
 
   soup;
   appetizer;
@@ -30,8 +30,6 @@ export class ViewTicketComponent implements OnInit {
   }
 
   ngOnInit() {    
-    this.id_ticket = this.service.get("id_ticket")
-    console.log(this.id_ticket);
     this.menuByLunchroom()
   }
 
