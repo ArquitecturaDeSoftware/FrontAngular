@@ -13,6 +13,10 @@ export class ComponentLunchroomComponent implements OnInit {
   @Input () num_ed;
   @Input () index;
   @Input () code_lunchroom;
+  @Input () principal_count;
+  @Input () open_time;
+  @Input () close_time;
+  @Input () num_lunches;
   
 
   active = false;
@@ -20,7 +24,7 @@ export class ComponentLunchroomComponent implements OnInit {
 
   constructor(private service: IdUserService) { }
 
-  ngOnInit() {            
+  ngOnInit() {    
   }
 
   onClick(){

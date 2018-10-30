@@ -16,6 +16,12 @@ export class ComponentLunchroomModalComponent implements OnInit {
   @Input () id_lunchroom;
   @Input () name_lunchroom;
   @Input () code_lunchroom;
+  @Input () principal_count;
+  @Input () open_time;
+  @Input () close_time;
+  @Input () num_lunches;
+  @Input () num_ed;
+
 
   src = this.service.src;
 
@@ -92,7 +98,7 @@ export class ComponentLunchroomModalComponent implements OnInit {
                 lunchroomId: "${this.service.get("id_lunchroom")}"
                 userId: ${this.service.get("user_id")}
                 price: ${(this.service.get("user_id") > 9999 ? 4800 : 6500)}
-                name: "${this.code_lunchroom}"
+                name: "${this.code_lunchroom + this.principal_count}"
               }){
                 name
                 id
@@ -103,7 +109,36 @@ export class ComponentLunchroomModalComponent implements OnInit {
     }).then(result => {
         this.service.set("name_ticket", result.data.data.createTicket.name);
         this.service.set("id_ticket", result.data.data.createTicket.id);
+        this.aumentarContadorLunchroom();
         this.router.navigate(['tickets']);
+    }).catch(error => {
+      console.log(error)
+    });
+  }
+
+  aumentarContadorLunchroom(){
+    axios({
+      url: 'http://35.229.97.157:5000/graphql/?',
+      method: 'post',
+      data: {
+        query: `
+          mutation{
+            updateLunchroom(id_lunchroom:"${this.id_lunchroom}", lunchroom:{
+              name:"${this.name_lunchroom}"
+              numlunch: ${this.num_lunches}
+              openTime: "${this.open_time}"
+              closeTime: "${this.close_time}"
+              building: "${this.num_ed}"
+              code: "${this.code_lunchroom}"
+              principalCount: ${this.principal_count + 1}
+            }){
+              principalCount
+            }
+          }
+          `
+      }
+    }).then(result => {
+      console.log(result.data.data.updateLunchroom);
     }).catch(error => {
       console.log(error)
     });
