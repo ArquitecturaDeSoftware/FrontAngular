@@ -33,13 +33,16 @@
     </div>
     <div class="col-md-6">
       <app-component-lunchroom-price></app-component-lunchroom-price>
-      <button type="button"
+      <button 
+        id = "cancelbutton"
+        type="button"
         class="btn btn-danger btn-lg btn-block"
         name="cancelar"
         [style.marginBottom.%]="2"
-        (click)="onClick()">
+        (click)="cancelarTurno()">
           Cancelar turno
       </button>
     </div>
   </div>
 </div>
+

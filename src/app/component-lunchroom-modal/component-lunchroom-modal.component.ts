@@ -33,7 +33,11 @@ export class ComponentLunchroomModalComponent implements OnInit {
   dessert:String;
   salad:String;
 
-  constructor(private router: Router, private service: IdUserService) { }
+  backFlag = true;   //bandera para no permitir retroceso al pedir turno
+
+  constructor(private router: Router, 
+              private service: IdUserService) {         
+  }      
 
   ngOnInit() {
     this.menusByLunchroom();    
@@ -43,7 +47,7 @@ export class ComponentLunchroomModalComponent implements OnInit {
     this.close.emit(null);
   }
 
-  pedirTurno(){   
+  pedirTurno(){  
     this.service.set("name_lunchroom", this.name_lunchroom);
     this.service.set("index", this.index);
     this.service.set("id_lunchroom", this.id_lunchroom);
@@ -138,7 +142,6 @@ export class ComponentLunchroomModalComponent implements OnInit {
           `
       }
     }).then(result => {
-      console.log(result.data.data.updateLunchroom);
     }).catch(error => {
       console.log(error)
     });
