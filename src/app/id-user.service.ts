@@ -26,6 +26,16 @@ export class IdUserService {
   "../assets/lunchrooms/hemeroteca.png",
   "../assets/lunchrooms/matematicas.png",
   "../assets/lunchrooms/odontologia.png"];
+  icons = [
+  "../assets/Others/bonus_icon.png",
+  "../assets/Others/calendar_icon.png",
+  "../assets/Others/lunch_icon.png",
+  "../assets/Others/silverware_icon.png",
+  "../assets/Others/stars_icon.png",
+  "../assets/Others/student_icon.png",
+  "../assets/Others/watch_icon.png",
+  "../assets/Others/x_icon.png"
+  ];
  
   constructor() { }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
+import { IdUserService } from "../id-user.service";
 
 @Component({
   selector: 'app-admin-view',
@@ -15,8 +16,9 @@ export class ViewAdminComponent implements OnInit {
   price:number;
   line:number;
   flag = false;
+  icons = this.service.icons;
 
-  constructor() { 
+  constructor( private service: IdUserService ) { 
     setInterval(data => {
       this.getSiguienteTicket();
       this.getTodosTickets();

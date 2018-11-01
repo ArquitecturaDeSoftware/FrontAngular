@@ -2,7 +2,9 @@ import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angu
 import { Router } from '@angular/router';
 import { IdUserService } from "../id-user.service";
 import axios from "axios";
+import { log } from 'util';
 
+declare var $:any;
 
 @Component({
   selector: 'app-component-lunchroom-modal',
@@ -38,7 +40,10 @@ export class ComponentLunchroomModalComponent implements OnInit {
   }      
 
   ngOnInit() {
-    this.menuPorRestaurante();    
+    this.menuPorRestaurante();   
+    $("#myModal").on('hide.bs.modal', () => {
+      this.clickClose();
+    }); 
   }
 
   clickClose(){

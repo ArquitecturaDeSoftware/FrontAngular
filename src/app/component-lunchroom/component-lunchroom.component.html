@@ -1,6 +1,6 @@
 <div class="col-md-3">
-  <div class="hovereffect">
-    <div class="thumbnail">
+  <div class="">
+    <div class="thumbnail hovereffect">
       <img class="img-responsive"
         src={{src[index]}}
         alt={{name_lunchroom}}
@@ -14,6 +14,9 @@
           </h4>
         </div>
         <p>Edificio: {{num_ed}}</p>
+        <div class="progress">
+          <div class="progress-bar bg-danger" [style.width.%]="40">rating</div>
+        </div>
         <app-component-lunchroom-modal 
           *ngIf="active" 
           (close)="active = false" 

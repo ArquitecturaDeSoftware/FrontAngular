@@ -1,28 +1,33 @@
 <div class="color">
   <h1 class="title">Turno solicitado en {{name_lunchroom}} </h1>
 </div>
-<div class="container">
+<div class="container-fluid">
   <div class="row" [style.marginTop.%]="2">
-    <div class="col-md-4">
-      <div class="thumbnail">
-        <img src={{src[index]}}
-        alt={{name_lunchroom}}/>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+      <div class="w3-container w3-center w3-animate-left">
+        <div class="thumbnail">
+            <img src={{src[index]}}
+            alt={{name_lunchroom}}/>
+          </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 
     </div>
-    <div class="col-md-4">
-      <div class="ticket-container">
-        <h1 class="ticket-text">{{"Turno: " + name_ticket}}</h1>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+      <div class="container-fluid">
+        <div class="ticket-container">
+          <h1 class="ticket-text">{{"Turno: " + name_ticket}}</h1>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<div class="lunchroom-container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-6">
-      <app-component-lunchroom-menu 
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="w3-container w3-animate-opacity">
+        <app-component-lunchroom-menu 
         [soup] = soup
         [appetizer] = appetizer
         [main_course] = main_course
@@ -30,19 +35,46 @@
         [juice] = juice
         [dessert] = dessert
         [salad] = salad></app-component-lunchroom-menu>
+      </div>
     </div>
-    <div class="col-md-6">
-      <app-component-lunchroom-price></app-component-lunchroom-price>
-      <button 
-        id = "cancelbutton"
-        type="button"
-        class="btn btn-danger btn-lg btn-block"
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="w3-container w3-animate-opacity">
+        <app-component-lunchroom-price></app-component-lunchroom-price>
+      </div>
+      <br>
+      <button type="button"
+        class="w3-btn w3-deep-orange w3-block"
         name="cancelar"
         [style.marginBottom.%]="2"
-        (click)="cancelarTurno()">
+        data-toggle="modal"
+        data-target="#myModal">
           Cancelar turno
       </button>
     </div>
   </div>
+  <br>
 </div>
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">¿Está seguro que desea cancelar su turno?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              </button>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" [style.marginBottom.%]="2" data-dismiss="modal">Regresar</button>
+              <button type="button" class="btn btn-danger" [style.marginBottom.%]="2" data-dismiss="modal" (click)="onClick()">Cancelar turno</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

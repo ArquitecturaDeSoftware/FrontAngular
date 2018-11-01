@@ -4,54 +4,193 @@
 <div class="container">
   <div class="row" [style.marginTop.%]="3">
     <div class="col-md-4">
-      <div class="ticket-container">
+      <div class="ticket-container w3-animate-left">
         <h1 class="ticket-text">
           {{ id_current_Shift != -1 ? "Turno Actual : " + name_current_Shift : "No hay más turnos" }} </h1>
       </div>
     </div>
     <div class="col-md-4" [ngStyle]="{'marginTop': '3%', 'marginLeft':'3%'}">
-      <button type="button" name="Siguiente" class="btn btn-danger btn-lg" (click)="clickChangeTicket()">
+      <button type="button" name="Siguiente" class="w3-btn w3-deep-orange" (click)="clickChangeTicket()">
         Siguiente Turno
       </button>
     </div>
+    <br>
   </div>
 </div>
-<div class="lunchroom-container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-6">
-      <div class="menu-container">
-        <h3 [style.color]="'#337AB7'">Información</h3>
-        <table class="table table-striped">
-          <tbody>
-            <tr>
-              <th [style.color]="'#32CD32'">Cobro</th>
-              <th>
-                <span>
-                  {{ (id_current_Shift == -1) ? 0 : price}} pesos
-                </span>
-              </th>
-            </tr>
-            <tr>
-              <th [style.color]="'#32CD32'">Turnos restantes</th>
-              <th>
-                <span>
-                  {{line}} personas
-                </span>
-              </th>
-            </tr>
-          </tbody>
-        </table>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="w3-container">
+        <div class="w3-card-4 w3-animate-opacity">
+          <div class="w3-container w3-teal">
+            <h2>Información</h2>
+          </div>
+          <div class="w3-container w3-light-grey">
+            <br>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th [style.color]="'#32CD32'">Cobro</th>
+                  <th>
+                    <span>
+                      {{ (id_current_Shift == -1) ? 0 : price}} pesos
+                    </span>
+                  </th>
+                </tr>
+                <tr>
+                  <th [style.color]="'#32CD32'">Turnos restantes</th>
+                  <th>
+                    <span>
+                      {{line}} personas
+                    </span>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <app-component-admin-editmenu [id_lunchroom]=id_lunchroom>
-      </app-component-admin-editmenu>
-    </div>
-    <div class="col-md-6">
-      <button type="button" name="estadisticas" class="btn btn-primary btn-lg btn-block" [ngStyle]="{'marginTop': '2%', 'marginBottom':'2%'}"
-        (click)="clickStats()">
+      
+      <button type="button" 
+      name="estadisticas" 
+      class="w3-btn w3-blue w3-block" 
+      [ngStyle]="{'marginTop': '2%', 'marginBottom':'2%'}"
+      data-toggle="collapse"
+      data-target="#date">
         Estadísticas
       </button>
+      <div id="date" class="collapse">
+        <div class="w3-container w3-white">
+          <h4 [style.color]="'#00bcd4'">¿De qué día desea revisar su estadística?</h4>
+          <input type="date">
+          <br>
+          <br>
+          <button class="w3-btn w3-blue" data-toggle="modal" data-target="#myModal">
+            Ver estadística
+          </button>
+          <br>
+          <br>
+        </div>
+      </div>
+      <br>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="w3-container">
+        <app-component-admin-editmenu [id_lunchroom]=id_lunchroom>
+        </app-component-admin-editmenu>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="clickClose()">&times;</button>
+        <div class="color">
+          <h1 class="title">Estadisticas</h1>
+        </div>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="w3-card-4 w3-center w3-white">
+                <br>
+                <img src={{icons[1]}} width="80" height="80" alt="icon">
+                <h3 [style.color]="'grey'">Fecha</h3>
+                <p class="w3-gray">31/10/2018</p>
+                <br>
+              </div>
+              <br>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="w3-card-4 w3-center w3-white">
+                <br>
+                <img src={{icons[2]}} width="80" height="80" alt="icon">
+                <h3 [style.color]="'#4CAF50'">Almuerzos vendidos</h3>
+                <p class="w3-green">300</p>
+                <br>
+              </div>
+              <br>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="w3-card-4 w3-center w3-white">
+                <br>
+                <img src={{icons[7]}} width="80" height="80" alt="icon">
+                <h3 [style.color]="'#ff5722'">Turnos cancelados</h3>
+                <p class="w3-deep-orange">10</p>
+                <br>
+              </div>
+              <br>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="w3-card-4 w3-center w3-white">
+                <br>
+                <img src={{icons[6]}} width="80" height="80" alt="icon">
+                <h3 [style.color]="'#00bcd4'">Tiempo promedio de espera</h3>
+                <p class="w3-cyan">1 minuto</p>
+                <br>
+              </div>
+              <br>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="w3-card-4 w3-center w3-white">
+                <br>
+                <img src={{icons[4]}} width="80" height="80" alt="icon">
+                <h3 [style.color]="'#ffeb3b'">Promedio de calificaciones</h3>
+                <p class="w3-yellow">10 puntos</p>
+                <br>
+              </div>
+              <br>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="w3-card-4 w3-center w3-white">
+                <br>
+                <img src={{icons[0]}} width="80" height="80" alt="icon">
+                <h3 [style.color]="'#009688'">Almuerzos vendidos a estudiantes con bono</h3>
+                <p class="w3-teal">100</p>
+                <br>
+              </div>
+              <br>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="w3-card-4 w3-center w3-white">
+                <br>
+                <img src={{icons[5]}} width="80" height="80" alt="icon">
+                <h3 [style.color]="'#87CEEB'">Almuerzos vendidos a estudiantes</h3>
+                <p class="w3-light-blue">100</p>
+                <br>
+              </div>
+              <br>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="w3-card-4 w3-center w3-white">
+                <br>
+                <img src={{icons[3]}} width="80" height="80" alt="icon">
+                <h3 [style.color]="'#f0e68c'">Almuerzos vendidos a particulares</h3>
+                <p class="w3-khaki">100</p>
+                <br>
+              </div>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+          <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="clickClose()">
+          aceptar
+        </button>
+      </div>
     </div>
   </div>
 </div>

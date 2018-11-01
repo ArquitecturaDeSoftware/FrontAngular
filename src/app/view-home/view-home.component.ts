@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy} from '@angular/core';
 import { Router } from '@angular/router'
 import { IdUserService } from "../id-user.service";
 import axios from 'axios'
-
+import { log } from 'util';
+declare var $:any;
 
 @Component({
   selector: 'app-home-view',
@@ -14,16 +15,26 @@ export class ViewHomeComponent implements OnInit {
 
   user_def = Math.ceil(1000 + Math.random() * (9999 - 1000));
   src = this.service.src;
+  id = false;
 
   constructor(private router: Router, private service: IdUserService) { }
 
   ngOnInit() {
+    $(document).ready( () => {
+      $('[data-toggle="tooltip"]').tooltip();   
+  });
   }
 
   onClick(value){
     this.service.set("ced_user", value); 
     if (value != "") {
       this.getUser()
+    }
+    else{
+      console.log(this.id);
+      
+      this.id = true;
+      console.log(this.id);
     }
   }
 

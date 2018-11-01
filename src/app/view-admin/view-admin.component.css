@@ -21,14 +21,14 @@
   }
 
   .ticket-container{
-    border-radius: 5px 5px 5px 5px;
-    background-color: #337AB7;
+    background-color: #269ABC;
     padding-top: 5%;
     padding-left: 2%;
     padding-bottom: 5%;
     padding-right: 2%;
     margin-bottom: 5%;
-    box-shadow: inset 0px 0px 7px #C0C0C0;
+    box-shadow: inset 2px 2px 10px black;
+    transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
   }
   
   .ticket-text{

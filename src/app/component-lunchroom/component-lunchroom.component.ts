@@ -62,4 +62,8 @@ export class ComponentLunchroomComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(){
+    this.active = false;
+  }
+
 }
