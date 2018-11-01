@@ -1,0 +1,12 @@
+.title{
+    color: white;
+    text-shadow: 1px 1px 1px grey;
+    text-align: justify;
+  }
+
+@media (min-width: 768px){
+    .container {
+        width: 568px;
+    }
+}
+

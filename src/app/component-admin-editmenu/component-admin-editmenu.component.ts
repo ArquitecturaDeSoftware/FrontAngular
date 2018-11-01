@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import axios from 'axios'
-
+declare var $:any;
 @Component({
   selector: 'app-component-admin-editmenu',
   templateUrl: './component-admin-editmenu.component.html',
@@ -20,7 +20,10 @@ export class ComponentAdminEditmenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.menusByLunchroom();    
+    this.menusByLunchroom();  
+    $(document).ready( () => {
+      $('[data-toggle="tooltip"]').tooltip();   
+  });  
   }
 
   actualizarMenu(soup, appetizer, main_course, protein, juice, dessert, salad){    

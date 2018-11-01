@@ -28,4 +28,8 @@ export class ComponentLunchroomComponent implements OnInit {
     this.service.set("id_lunchroom", this.id_lunchroom);    
   }
 
+  ngOnDestroy(){
+    this.active = false;
+  }
+
 }

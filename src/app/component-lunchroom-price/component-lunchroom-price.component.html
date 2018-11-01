@@ -1,32 +1,37 @@
-<div class="menu-container">
-  <h3 [style.color]="'#337AB7'">Información</h3>
-  <table class="table table-striped">
-    <tbody>
-      <tr>
-        <th [style.color]="'#32CD32'">Precio</th>
-        <th>
-        <span>
-          {{ user_id > 9999 ? 4800 : 6500 }} pesos
-        </span >
-        </th>
-      </tr>
-      <tr>
-        <th [style.color]="'#32CD32'">Turnos restantes</th>
-        <th>
+<div class="w3-card-4 w3-animate-opacity">
+  <div class="w3-container w3-teal">
+    <h2>Información</h2>
+  </div>
+  <div class="w3-container w3-white">
+    <br>
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th [style.color]="'#32CD32'">Precio</th>
+          <th>
           <span>
-            {{line }}
+            {{ user_id > 9999 ? 4800 : 6500 }} pesos
           </span >
-        </th>
-      </tr>
-      <tr>
-        <th [style.color]="'#32CD32'">Tiempo de espera</th>
-        <th>
-          <span>
-          {{time >= 0 ? time : 0}}
-          {{time === 1 ? " minuto" : " minutos"}}
-          </span>
-        </th>
-      </tr>
-    </tbody>
-  </table>
+          </th>
+        </tr>
+        <tr>
+          <th [style.color]="'#32CD32'">Turnos restantes</th>
+          <th>
+            <span>
+              {{line }}
+            </span >
+          </th>
+        </tr>
+        <tr>
+          <th [style.color]="'#32CD32'">Tiempo de espera</th>
+          <th>
+            <span>
+            {{time >= 0 ? time : 0}}
+            {{time === 1 ? " minuto" : " minutos"}}
+            </span>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

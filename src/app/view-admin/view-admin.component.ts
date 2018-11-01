@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
+import { IdUserService } from "../id-user.service";
 
 @Component({
   selector: 'app-admin-view',
@@ -13,8 +14,9 @@ export class ViewAdminComponent implements OnInit {
   name_current_Shift:String;
   id_current_Shift:number;
   flag = false;
+  icons = this.service.icons;
 
-  constructor() { 
+  constructor( private service: IdUserService ) { 
     setInterval(data => {
       this.getNextTicket()
     },5000)

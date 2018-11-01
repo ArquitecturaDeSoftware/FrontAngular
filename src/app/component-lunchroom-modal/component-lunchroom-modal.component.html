@@ -1,33 +1,15 @@
-  <!-- The Modal -->
-<div class="modal" id="myModal" data-backdrop="static" data-keyboard="false">
+ <!-- The Modal -->
+<div class="modal fade" id="myModal">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" (click)="clickClose()">&times;</button>
-        <div class="color">
-          <h1 class="title">{{name_lunchroom}}</h1>
-        </div>
-      </div>
 
       <!-- Modal body -->
       <div class="modal-body">
         <div class="container" [style.marginTop.%]="2">
-          <div class="row">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img src={{src[index]}}
-                class="img-responsive"
-                alt={{name}}/>
-              </div>
-            </div>
-          </div>
-          <div class="lunchroom-container">
+
+          <div class="container-fluid">
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <app-component-lunchroom-menu 
                   [soup] = soup
                   [appetizer] = appetizer
@@ -37,25 +19,11 @@
                   [dessert] = dessert
                   [salad] = salad>
                 </app-component-lunchroom-menu>
+                <br>
               </div>
-              <div class="col-md-12">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <app-component-lunchroom-price></app-component-lunchroom-price>
-                <button type="button"
-                  class="btn btn-success btn-lg btn-block"
-                  name="button"
-                  [style.marginBottom.%]="2"
-                  data-dismiss="modal"
-                  (click)="pedirTurno()">
-                    Pedir turno
-                </button>
-                <button type="button"
-                  class="btn btn-info btn-lg btn-block"
-                  name="button"
-                  [style.marginBottom.%]="2"
-                  data-dismiss="modal"
-                  (click)="verComentarios()">
-                    Ver comentarios
-                </button>
+                <br>
               </div>
             </div>
           </div>
@@ -64,7 +32,10 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="clickClose()">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="clickClose()">
+          Cerrar
+        </button>
       </div>
     </div>
   </div>
+</div>
