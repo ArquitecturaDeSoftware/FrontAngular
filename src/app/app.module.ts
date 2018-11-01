@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NotifierModule } from "angular-notifier";
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +25,8 @@ import { ComponentAdminEditmenuComponent } from './component-admin-editmenu/comp
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NotifierModule
   ],
   providers: [IdUserService],
   bootstrap: [AppComponent]

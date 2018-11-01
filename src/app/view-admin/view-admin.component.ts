@@ -13,6 +13,7 @@ export class ViewAdminComponent implements OnInit {
   id_lunchroom = "5bd668a7160100435c3ba483";
   name_current_Shift:String;
   id_current_Shift:number;
+  price:number;
   flag = false;
   icons = this.service.icons;
 
@@ -45,6 +46,7 @@ export class ViewAdminComponent implements OnInit {
             nextTicket(id_restaurant:"${this.id_lunchroom}"){
               id
               name
+              price
             }
           }
         `
@@ -52,6 +54,7 @@ export class ViewAdminComponent implements OnInit {
     }).then(result => {
         this.id_current_Shift = result.data.data.nextTicket.id; 
         this.name_current_Shift = result.data.data.nextTicket.name; 
+        this.price = result.data.data.nextTicket.price;
         if (this.flag == false) {
           this.updateTicket("CALLING");
         }
@@ -78,6 +81,7 @@ export class ViewAdminComponent implements OnInit {
     }).then(result => { 
       if (this.flag == true) {
         this.getNextTicket();
+        this.flag = false;
       }
     }).catch(error => {
       console.log(error)

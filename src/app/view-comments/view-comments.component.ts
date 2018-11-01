@@ -26,12 +26,12 @@ export class ViewCommentsComponent implements OnInit {
         query: `
           mutation{
             createPost(post:{
-              id:${this.service.get("user_id")}
+              id: 1
               text:"${mensaje}"
               author_name:"${nombre}"
               author_email:"${correo}"
-              restaurant_id:"5bce0d459804009c34a97474"
-              score:4
+              restaurant_id:"${this.service.get("id_lunchroom")}"
+              score: 4
             }){
               restaurant_id
             }
@@ -39,7 +39,6 @@ export class ViewCommentsComponent implements OnInit {
         `
       }
     }).then(result => {
-        console.log(this.comments);
         this.getAllComments()
     }).catch(error => {
       console.log(error)
@@ -65,6 +64,7 @@ export class ViewCommentsComponent implements OnInit {
       }
     }).then(result => {
         this.comments = result.data.data.postsByRestaurant;
+        console.log(this.service.get("id_lunchroom"));
     }).catch(error => {
       console.log(error)
     });

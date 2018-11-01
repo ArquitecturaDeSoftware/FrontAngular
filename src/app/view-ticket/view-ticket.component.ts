@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import axios from 'axios'
 import { Router } from '@angular/router'
 import { IdUserService } from "../id-user.service";
+import {Location} from "@angular/common";
+
 
 @Component({
   selector: 'app-ticket-view',
@@ -26,14 +28,30 @@ export class ViewTicketComponent implements OnInit {
   dessert;
   salad;
 
-  constructor(private service: IdUserService, private router: Router) {
+  falg = true;
+
+  constructor(private service: IdUserService, private router: Router, private locations: Location) {
+      //evitar que la pagina retroceda
+      history.pushState(null, null, null);
+      window.onpopstate = function () {
+        console.log("2");
+        
+        history.go(1);
+      };
   }
 
   ngOnInit() {    
-    this.menuByLunchroom()
+    this.menuByLunchroom()  
   }
 
-  onClick(){
+  ngOnDestroy() {
+    history.pushState(null, null, null);
+      window.onpopstate = function () {
+        history.go(1);
+      };
+  }
+
+  cancelarTurno(){
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
       method: 'post',

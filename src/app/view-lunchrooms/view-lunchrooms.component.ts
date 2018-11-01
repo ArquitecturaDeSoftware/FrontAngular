@@ -37,7 +37,7 @@ export class ViewLunchroomsComponent implements OnInit {
         `
       }
     }).then(result => {
-        this.service.all_lunchrooms = result.data.data.allLunchrooms;                   
+        this.service.all_lunchrooms = result.data.data.allLunchrooms;                      
     }).catch(error => {
       console.log(error)
     });

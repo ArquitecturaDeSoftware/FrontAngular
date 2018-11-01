@@ -6,8 +6,7 @@
     <div class="col-md-4">
       <div class="ticket-container w3-animate-left">
         <h1 class="ticket-text">
-          {{ id_current_Shift != -1 ? "Turno Actual: " + id_current_Shift : "No hay más turnos" }}
-        </h1>
+          {{ id_current_Shift != -1 ? "Turno Actual : " + name_current_Shift : "No hay más turnos" }} </h1>
       </div>
     </div>
     <div class="col-md-4" [ngStyle]="{'marginTop': '3%', 'marginLeft':'3%'}">
@@ -34,7 +33,7 @@
                   <th [style.color]="'#32CD32'">Cobro</th>
                   <th>
                     <span>
-                      {{ (id_current_Shift == -1) ? 0 : ((id_current_Shift > 9999) ? 4800 : 6500)}} pesos
+                      {{ (id_current_Shift == -1) ? 0 : price}} pesos
                     </span>
                   </th>
                 </tr>
