@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="col-md-4" [ngStyle]="{'marginTop': '3%', 'marginLeft':'3%'}">
-      <button type="button" name="Siguiente" class="btn btn-danger btn-lg" (click)="changeTicket()">
+      <button type="button" name="Siguiente" class="btn btn-danger btn-lg" (click)="clickChangeTicket()">
         Siguiente Turno
       </button>
     </div>
@@ -35,7 +35,7 @@
               <th [style.color]="'#32CD32'">Turnos restantes</th>
               <th>
                 <span>
-                  {{line }}
+                  {{line}} personas
                 </span>
               </th>
             </tr>

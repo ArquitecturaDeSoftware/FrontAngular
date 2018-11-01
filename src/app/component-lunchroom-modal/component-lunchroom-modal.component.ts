@@ -33,33 +33,31 @@ export class ComponentLunchroomModalComponent implements OnInit {
   dessert:String;
   salad:String;
 
-  backFlag = true;   //bandera para no permitir retroceso al pedir turno
-
   constructor(private router: Router, 
               private service: IdUserService) {         
   }      
 
   ngOnInit() {
-    this.menusByLunchroom();    
+    this.menuPorRestaurante();    
   }
 
   clickClose(){
     this.close.emit(null);
   }
 
-  pedirTurno(){  
+  clickPedirTurno(){  
     this.service.set("name_lunchroom", this.name_lunchroom);
     this.service.set("index", this.index);
     this.service.set("id_lunchroom", this.id_lunchroom);
-    this.createTicket()
+    this.crearTicket()
   }
 
-  verComentarios(){
+  clickVerComentarios(){
     this.service.set("id_lunchroom", this.id_lunchroom);
     this.router.navigate(['comments']);
   }
 
-  menusByLunchroom(){
+  menuPorRestaurante(){
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
       method: 'post',
@@ -91,7 +89,7 @@ export class ComponentLunchroomModalComponent implements OnInit {
     });
   }
 
-  createTicket(){
+  crearTicket(){
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
       method: 'post',
@@ -100,8 +98,8 @@ export class ComponentLunchroomModalComponent implements OnInit {
             mutation{
               createTicket(ticket:{
                 lunchroomId: "${this.service.get("id_lunchroom")}"
-                userId: ${this.service.get("user_id")}
-                price: ${(this.service.get("user_id") > 9999 ? 4800 : 6500)}
+                userId: ${this.service.get("ced_user")}
+                price: ${this.service.get("price")}
                 name: "${this.code_lunchroom + this.principal_count}"
               }){
                 name
@@ -146,5 +144,4 @@ export class ComponentLunchroomModalComponent implements OnInit {
       console.log(error)
     });
   }
-
 }

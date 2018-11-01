@@ -4,12 +4,16 @@ import { Injectable } from '@angular/core';
 })
 export class IdUserService {
 
-// name_lunchroom
-// index
-// id_lunchroom
-// name_ticket
-// id_ticket
-// user_id
+// name_lunchroom   usado para renderizar los componentes
+// index  usado     para renderizar las imagenes
+// id_lunchroom     usado para seleccionar el restaurante
+// name_ticket      usado para mostrar el ticket en pantalla
+// id_ticket        corresponde al id de ticket pedido
+// ced_user         primer numero ingresado por el usuario
+// active_ticket    saber si tiene un turno activo o no
+// user_lunchroom   ver el restaurante al cual esta afiliado el usuario
+// price            precio del almuerzo
+// line             tamaño de la fila
 
   all_lunchrooms = [];
   src = ["../assets/lunchrooms/geologia.png",
@@ -25,7 +29,7 @@ export class IdUserService {
  
   constructor() { }
 
-  set(variable, value){
+  set(variable:string, value){
     sessionStorage.setItem(variable, `${value}`)
   }
 

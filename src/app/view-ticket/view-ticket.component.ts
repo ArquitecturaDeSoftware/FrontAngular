@@ -16,8 +16,8 @@ export class ViewTicketComponent implements OnInit {
   id_lunchroom = this.service.get("id_lunchroom");
   src = this.service.src;
   index = this.service.get("index");
-  id_user = this.service.get("user_id");
-  price_user = (this.id_user > 9999 ? 4800 : 6500);
+  id_user = this.service.get("ced_user");
+  price_user = this.service.get("price");
   name_ticket = this.service.get("name_ticket")
 
   soup;
@@ -30,25 +30,21 @@ export class ViewTicketComponent implements OnInit {
 
   falg = true;
 
-  constructor(private service: IdUserService, private router: Router, private locations: Location) {
+  constructor(private service: IdUserService, private router: Router) {
       //evitar que la pagina retroceda
       history.pushState(null, null, null);
-      window.onpopstate = function () {
-        console.log("2");
-        
+      window.onpopstate = function () {        
         history.go(1);
       };
   }
 
-  ngOnInit() {    
-    this.menuByLunchroom()  
+  ngOnInit() {  
+    this.getTurnosAnteriores();  
+    this.menuByLunchroom();
   }
 
   ngOnDestroy() {
-    history.pushState(null, null, null);
-      window.onpopstate = function () {
-        history.go(1);
-      };
+    window.onpopstate = null;
   }
 
   cancelarTurno(){
@@ -104,4 +100,25 @@ export class ViewTicketComponent implements OnInit {
       console.log(error)
     });
   }
+
+  getTurnosAnteriores(){
+    axios({
+      url: 'http://35.229.97.157:5000/graphql/?',
+      method: 'post',
+      data: {
+        query: `
+          query{
+            ticketsBefore(id_ticket:"${this.service.get("id_ticket")}"){
+              id
+            }
+          }
+        `
+      }
+    }).then(result => {
+      this.service.set("line", result.data.data.ticketsBefore.length)
+    }).catch(error => {
+      console.log(error)
+    });
+  }
+
 }

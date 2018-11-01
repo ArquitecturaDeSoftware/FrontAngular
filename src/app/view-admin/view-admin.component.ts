@@ -13,19 +13,21 @@ export class ViewAdminComponent implements OnInit {
   name_current_Shift:String;
   id_current_Shift:number;
   price:number;
+  line:number;
   flag = false;
 
   constructor() { 
     setInterval(data => {
-      this.getNextTicket()
-    },5000)
+      this.getSiguienteTicket();
+      this.getTodosTickets();
+    },3000)
   }
 
   ngOnInit() { 
-    this.getNextTicket()    
+    this.getSiguienteTicket()    
   }
 
-  changeTicket(){
+  clickChangeTicket(){
     this.flag = true;
     this.updateTicket("FINISHED");
   }
@@ -34,7 +36,7 @@ export class ViewAdminComponent implements OnInit {
 
   }
 
-  getNextTicket(){
+  getSiguienteTicket(){
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
       method: 'post',
@@ -78,9 +80,29 @@ export class ViewAdminComponent implements OnInit {
       }
     }).then(result => { 
       if (this.flag == true) {
-        this.getNextTicket();
+        this.getSiguienteTicket();
         this.flag = false;
       }
+    }).catch(error => {
+      console.log(error)
+    });
+  }
+
+  getTodosTickets(){
+    axios({
+      url: 'http://35.229.97.157:5000/graphql/?',
+      method: 'post',
+      data: {
+        query: `
+          query{
+            ticketsByRestaurant(id_restaurant:"${this.id_lunchroom}"){
+              id
+            }
+          }
+        `
+      }
+    }).then(result => {
+        this.line = result.data.data.ticketsByRestaurant.length;
     }).catch(error => {
       console.log(error)
     });

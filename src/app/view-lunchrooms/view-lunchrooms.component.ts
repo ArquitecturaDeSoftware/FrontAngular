@@ -9,10 +9,10 @@ import axios from "axios";
 })
 export class ViewLunchroomsComponent implements OnInit {
 
-  constructor(private service: IdUserService) {  
+  constructor( private service: IdUserService) {  
   }
 
-  ngOnInit() {        
+  ngOnInit() {   
     this.getLunchrooms();    
   }
 

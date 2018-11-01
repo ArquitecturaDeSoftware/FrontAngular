@@ -39,13 +39,14 @@
                 </app-component-lunchroom-menu>
               </div>
               <div class="col-md-12">
-                <app-component-lunchroom-price></app-component-lunchroom-price>
+                <app-component-lunchroom-price>
+                </app-component-lunchroom-price>
                 <button type="button"
                   class="btn btn-success btn-lg btn-block"
                   name="button"
                   [style.marginBottom.%]="2"
                   data-dismiss="modal"
-                  (click)="pedirTurno()">
+                  (click)="clickPedirTurno()">
                     Pedir turno
                 </button>
                 <button type="button"
@@ -53,7 +54,7 @@
                   name="button"
                   [style.marginBottom.%]="2"
                   data-dismiss="modal"
-                  (click)="verComentarios()">
+                  (click)="clickVerComentarios()">
                     Ver comentarios
                 </button>
               </div>

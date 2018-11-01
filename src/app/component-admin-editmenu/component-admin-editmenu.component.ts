@@ -20,7 +20,7 @@ export class ComponentAdminEditmenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.menusByLunchroom();    
+    this.menusPorRestaurante();    
   }
 
   actualizarMenu(soup, appetizer, main_course, protein, juice, dessert, salad){    
@@ -51,7 +51,7 @@ export class ComponentAdminEditmenuComponent implements OnInit {
     });
   }
 
-  menusByLunchroom(){
+  menusPorRestaurante(){
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
       method: 'post',
