@@ -5,6 +5,7 @@ import { ViewLunchroomsComponent } from './view-lunchrooms/view-lunchrooms.compo
 import { ViewTicketComponent } from "./view-ticket/view-ticket.component";
 import { ViewAdminComponent } from './view-admin/view-admin.component';
 import { ViewCommentsComponent } from "./view-comments/view-comments.component";
+import { ViewHomeLoginAdminComponent } from "./view-home-login-admin/view-home-login-admin.component";
 
 const routes: Routes = [
   { path: '', component: ViewHomeComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'tickets', component: ViewTicketComponent },
   { path: 'admin', component: ViewAdminComponent },
   { path: 'comments', component: ViewCommentsComponent},
+  { path: 'login', component: ViewHomeLoginAdminComponent},
   { path: '**', redirectTo: ''}
 ];
 
@@ -20,4 +22,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [ViewCommentsComponent, ViewHomeComponent, ViewLunchroomsComponent, ViewTicketComponent, ViewAdminComponent]
+export const routingComponents = [ViewCommentsComponent, ViewHomeComponent, ViewLunchroomsComponent, ViewTicketComponent, ViewAdminComponent, ViewHomeLoginAdminComponent]
