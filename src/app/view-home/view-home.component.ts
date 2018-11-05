@@ -44,6 +44,8 @@ export class ViewHomeComponent implements OnInit {
           query{
             userById(id_user:"${this.service.get("ced_user")}"){
               t{
+                id
+                name
                 active_ticket
                 lunchroom_id
               }
@@ -55,7 +57,9 @@ export class ViewHomeComponent implements OnInit {
       if (result.data.data.userById.t == null) {
         this.crearUsuario(value);
       }else{
-        this.service.set("user_lunchroom", result.data.data.userById.t[0].lunchroom_id);
+        this.service.set("id_user", result.data.data.userById.t[0].id);
+        this.service.set("name_user", result.data.data.userById.t[0].name);        
+        this.service.set("lunchroom_user", result.data.data.userById.t[0].lunchroom_id);
         this.service.set("active_ticket", result.data.data.userById.t[0].active_ticket);
         this.router.navigate(['lunchrooms']);
       }
@@ -86,8 +90,8 @@ export class ViewHomeComponent implements OnInit {
         `
       }
     }).then(result => {
-      this.service.set("user_lunchroom", result.data.data.createUser.t.lunchroom_id);      
-      this.service.set("active_ticket", result.data.data.createUser.t.active_ticket);
+      this.service.set("lunchroom_user", "none");      
+      this.service.set("active_ticket", "");
       this.router.navigate(['lunchrooms']);
     }).catch(error => {
       console.log(error)

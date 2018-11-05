@@ -44,6 +44,8 @@ export class ComponentLunchroomModalComponent implements OnInit {
     $("#myModal").on('hide.bs.modal', () => {
       this.clickClose();
     }); 
+    console.log(typeof this.service.get("ced_user"));
+    
   }
 
   clickClose(){
@@ -117,7 +119,6 @@ export class ComponentLunchroomModalComponent implements OnInit {
         this.service.set("name_ticket", result.data.data.createTicket.name);
         this.service.set("id_ticket", result.data.data.createTicket.id);
         this.aumentarContadorLunchroom();
-        this.router.navigate(['tickets']);
     }).catch(error => {
       console.log(error)
     });
@@ -145,8 +146,35 @@ export class ComponentLunchroomModalComponent implements OnInit {
           `
       }
     }).then(result => {
+        this.actuTicketActivo();
     }).catch(error => {
       console.log(error)
     });
   }
+
+  actuTicketActivo(){
+    axios({
+      url: 'http://35.229.97.157:5000/graphql/?',
+      method: 'post',
+      data: {
+        query: `
+          mutation{
+            updateUser(id_user:"${this.service.get("id_user")}", user:{
+              cedula:"${this.service.get("ced_user")}"
+              name:"${this.service.get("name_user")}"
+              lunchroom_id:"${this.service.get("lunchroom_user")}"
+              active_ticket:"${this.service.get("name_ticket")}"
+            }){
+              err
+            }
+          }
+        `
+      }
+    }).then(result => {
+        this.router.navigate(['tickets']);
+    }).catch(error => {
+      console.log(error)
+    });
+  }
+
 }

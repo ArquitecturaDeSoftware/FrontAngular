@@ -63,7 +63,7 @@ export class ViewTicketComponent implements OnInit {
         `
       }
     }).then(result => {
-      this.router.navigate(['lunchrooms'])
+      this.actuTicketActivo();
     }).catch(error => {
       console.log(error)
     });
@@ -121,4 +121,29 @@ export class ViewTicketComponent implements OnInit {
     });
   }
 
+  actuTicketActivo(){
+    axios({
+      url: 'http://35.229.97.157:5000/graphql/?',
+      method: 'post',
+      data: {
+        query: `
+          mutation{
+            updateUser(id_user:"${this.service.get("id_user")}", user:{
+              cedula:"${this.service.get("ced_user")}"
+              name:"${this.service.get("name_user")}"
+              lunchroom_id:"${this.service.get("lunchroom_user")}"
+              active_ticket:""
+            }){
+              err
+            }
+          }
+        `
+      }
+    }).then(result => {
+      this.router.navigate(['lunchrooms']);
+    }).catch(error => {
+      console.log(error)
+    });
+  }
+  
 }

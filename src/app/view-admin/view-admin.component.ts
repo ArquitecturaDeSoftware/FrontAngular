@@ -14,6 +14,10 @@ export class ViewAdminComponent implements OnInit {
   name_current_Shift:String;
   id_current_Shift:number;
   price:number;
+  id_user:String;
+  ced_user:String;
+  name_user:String;
+  lunchroom_user:String;
   line:number;
   flag = false;
   icons = this.service.icons;
@@ -22,20 +26,16 @@ export class ViewAdminComponent implements OnInit {
     setInterval(data => {
       this.getSiguienteTicket();
       this.getTodosTickets();
-    },3000)
+    },5000)
   }
 
   ngOnInit() { 
-    this.getSiguienteTicket()    
+    this.getSiguienteTicket();
   }
 
   clickChangeTicket(){
     this.flag = true;
     this.updateTicket("FINISHED");
-  }
-
-  clickStats(){
-
   }
 
   getSiguienteTicket(){
@@ -49,6 +49,7 @@ export class ViewAdminComponent implements OnInit {
               id
               name
               price
+              userid
             }
           }
         `
@@ -57,6 +58,7 @@ export class ViewAdminComponent implements OnInit {
         this.id_current_Shift = result.data.data.nextTicket.id; 
         this.name_current_Shift = result.data.data.nextTicket.name; 
         this.price = result.data.data.nextTicket.price;
+        this.id_user = result.data.data.nextTicket.userid;
         if (this.flag == false) {
           this.updateTicket("CALLING");
         }
@@ -84,6 +86,7 @@ export class ViewAdminComponent implements OnInit {
       if (this.flag == true) {
         this.getSiguienteTicket();
         this.flag = false;
+        this.getUserInfo();
       }
     }).catch(error => {
       console.log(error)
@@ -105,6 +108,59 @@ export class ViewAdminComponent implements OnInit {
       }
     }).then(result => {
         this.line = result.data.data.ticketsByRestaurant.length;
+    }).catch(error => {
+      console.log(error)
+    });
+  }
+
+  getUserInfo(){
+    axios({
+      url: 'http://35.229.97.157:5000/graphql/?',
+      method: 'post',
+      data: {
+        query: `
+          query{
+            userById(id_user:"${this.id_user}"){
+              t{
+                id
+                cedula
+                name
+                lunchroom_id
+              }
+            }
+          }
+        `
+      }
+    }).then(result => {
+      this.id_user = result.data.data.userById.t[0].id;
+      this.ced_user = result.data.data.userById.t[0].cedula;
+      this.name_user = result.data.data.userById.t[0].name;
+      this.lunchroom_user = result.data.data.userById.t[0].lunchroom_id;
+      this.actuTicketActivo();
+    }).catch(error => {
+      console.log(error)
+    });
+  }
+
+  actuTicketActivo(){
+    axios({
+      url: 'http://35.229.97.157:5000/graphql/?',
+      method: 'post',
+      data: {
+        query: `
+          mutation{
+            updateUser(id_user:"${this.id_user}", user:{
+              cedula:"${this.ced_user}"
+              name:"${this.name_user}"
+              lunchroom_id:"${this.lunchroom_user}"
+              active_ticket:""
+            }){
+              err
+            }
+          }
+        `
+      }
+    }).then(result => {      
     }).catch(error => {
       console.log(error)
     });

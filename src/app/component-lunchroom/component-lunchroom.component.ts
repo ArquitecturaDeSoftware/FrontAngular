@@ -33,9 +33,9 @@ export class ComponentLunchroomComponent implements OnInit {
     this.active = true;
     this.service.set("id_lunchroom", this.id_lunchroom);
     this.getTicketsPorRestaurante();
-    if (this.id_lunchroom == this.service.get("user_lunchroom")) {
+    if (this.id_lunchroom == this.service.get("lunchroom_user")) {
       this.service.set("price", "0");
-    }else if(this.service.get("user_lunchroom") == "none"){
+    }else if(this.service.get("lunchroom_user") == "none"){
       this.service.set("price", "6500");
     }else{
       this.service.set("price", "4800");
