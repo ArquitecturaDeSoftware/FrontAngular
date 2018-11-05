@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy} from '@angular/core';
 import { Router } from '@angular/router'
 import { IdUserService } from "../id-user.service";
 import axios from 'axios'
-import { log } from 'util';
 declare var $:any;
 
 @Component({
@@ -13,7 +12,6 @@ declare var $:any;
 
 export class ViewHomeComponent implements OnInit {
 
-  user_def = Math.ceil(1000 + Math.random() * (9999 - 1000));
   src = this.service.src;
   id = false;
 
@@ -28,23 +26,16 @@ export class ViewHomeComponent implements OnInit {
   onClick(value){
     this.service.set("ced_user", value); 
     if (value != "") {
-      this.getUser()
+      this.getUsuario(value)
     }
     else{
       console.log(this.id);
-      
       this.id = true;
       console.log(this.id);
     }
   }
 
-  onClick2(){
-    this.service.set("ced_user", this.user_def);
-    this.router.navigate(['lunchrooms']);
-    this.service.set("user_lunchroom", "none");
-  }
-
-  getUser(){
+  getUsuario(value){
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
       method: 'post',
@@ -62,12 +53,42 @@ export class ViewHomeComponent implements OnInit {
       }
     }).then(result => {
       if (result.data.data.userById.t == null) {
-        alert("Ingresa un usuario valido")
+        this.crearUsuario(value);
       }else{
         this.service.set("user_lunchroom", result.data.data.userById.t[0].lunchroom_id);
         this.service.set("active_ticket", result.data.data.userById.t[0].active_ticket);
         this.router.navigate(['lunchrooms']);
       }
+    }).catch(error => {
+      console.log(error)
+    });
+  }
+
+  crearUsuario(value){
+    axios({
+      url: 'http://35.229.97.157:5000/graphql/?',
+      method: 'post',
+      data: {
+        query: `
+          mutation{
+            createUser(user:{
+              cedula:"${value}"
+              name:""
+              lunchroom_id:"none"
+              active_ticket:""
+            }){
+              t{
+                active_ticket
+                lunchroom_id
+              }
+            }
+          }
+        `
+      }
+    }).then(result => {
+      this.service.set("user_lunchroom", result.data.data.createUser.t.lunchroom_id);      
+      this.service.set("active_ticket", result.data.data.createUser.t.active_ticket);
+      this.router.navigate(['lunchrooms']);
     }).catch(error => {
       console.log(error)
     });
