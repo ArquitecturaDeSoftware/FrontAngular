@@ -36,3 +36,9 @@
     text-shadow: 1px 1px 1px grey;
     text-align: justify;
   }
+
+  .modal-header.llamado{
+    text-align: center;
+    background-color: #d4edda;
+    color: #155724;
+  }

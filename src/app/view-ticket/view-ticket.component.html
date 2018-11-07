@@ -50,6 +50,12 @@
         data-target="#myModal">
           Cancelar turno
       </button>
+      <button 
+      hidden
+      id="Llamado"
+      data-toggle="modal"
+      data-target="#myModal2">
+      </button>
     </div>
   </div>
   <br>
@@ -58,7 +64,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <!-- Modal -->
+      
+      <!-- Modal cancelar turno -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -75,6 +82,18 @@
           </div>
         </div>
       </div>
+      
+      <!-- Modal Llamado -->
+      <div class="modal fade" id="myModal2" >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header llamado">
+              <h5 class="modal-title">Estas siendo llamado en este momento</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

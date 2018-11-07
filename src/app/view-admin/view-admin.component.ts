@@ -20,23 +20,26 @@ export class ViewAdminComponent implements OnInit {
   lunchroom_user:String;
   line:number;
   flag = false;
-  icons = this.service.icons;
+  statistics = [];
+//  icons = this.service.icons;
 
   constructor( private service: IdUserService ) { 
     setInterval(data => {
       this.getSiguienteTicket();
       this.getTodosTickets();
-    },5000)
+    },3000)
   }
 
   ngOnInit() { 
     this.getSiguienteTicket();
+    this.getEstadisticas();
   }
 
   clickChangeTicket(){
     this.flag = true;
     this.updateTicket("FINISHED");
   }
+
 
   getSiguienteTicket(){
     axios({
@@ -67,6 +70,7 @@ export class ViewAdminComponent implements OnInit {
     });
   }
 
+
   updateTicket(status){ 
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
@@ -93,6 +97,7 @@ export class ViewAdminComponent implements OnInit {
     });
   }
 
+
   getTodosTickets(){
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
@@ -112,6 +117,7 @@ export class ViewAdminComponent implements OnInit {
       console.log(error)
     });
   }
+
 
   getUserInfo(){
     axios({
@@ -142,6 +148,7 @@ export class ViewAdminComponent implements OnInit {
     });
   }
 
+
   actuTicketActivo(){
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
@@ -165,4 +172,36 @@ export class ViewAdminComponent implements OnInit {
       console.log(error)
     });
   }
+
+
+  getEstadisticas(){
+    axios({
+      url: 'http://35.229.97.157:5000/graphql/?',
+      method: 'post',
+      data: {
+        query: `
+          query{
+            allStatistics{
+              t{
+                date
+                sold_lunches
+                canceled_shifts
+                av_time
+                av_punctuation
+                bonus_sold
+                student_sold
+                external_sold
+              }
+            }
+          }
+        `
+      }
+    }).then(result => {
+      this.statistics = result.data.data.allStatistics.t;
+      console.log(this.statistics);
+    }).catch(error => {
+      console.log(error)
+    });
+  }
+
 }

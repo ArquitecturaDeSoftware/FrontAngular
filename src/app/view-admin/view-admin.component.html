@@ -51,28 +51,17 @@
         </div>
       </div>
       
+      <br>
       <button type="button" 
       name="estadisticas" 
       class="w3-btn w3-blue w3-block" 
       [ngStyle]="{'marginTop': '2%', 'marginBottom':'2%'}"
-      data-toggle="collapse"
-      data-target="#date">
+      data-toggle="modal"
+      data-target="#myModal">
         Estadísticas
       </button>
-      <div id="date" class="collapse">
-        <div class="w3-container w3-white">
-          <h4 [style.color]="'#00bcd4'">¿De qué día desea revisar su estadística?</h4>
-          <input type="date">
-          <br>
-          <br>
-          <button class="w3-btn w3-blue" data-toggle="modal" data-target="#myModal">
-            Ver estadística
-          </button>
-          <br>
-          <br>
-        </div>
-      </div>
       <br>
+
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
       <div class="w3-container">
@@ -100,89 +89,33 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-              <div class="w3-card-4 w3-center w3-white">
-                <br>
-                <img src={{icons[1]}} width="80" height="80" alt="icon">
-                <h3 [style.color]="'grey'">Fecha</h3>
-                <p class="w3-gray">31/10/2018</p>
-                <br>
-              </div>
-              <br>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-              <div class="w3-card-4 w3-center w3-white">
-                <br>
-                <img src={{icons[2]}} width="80" height="80" alt="icon">
-                <h3 [style.color]="'#4CAF50'">Almuerzos vendidos</h3>
-                <p class="w3-green">300</p>
-                <br>
-              </div>
-              <br>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-              <div class="w3-card-4 w3-center w3-white">
-                <br>
-                <img src={{icons[7]}} width="80" height="80" alt="icon">
-                <h3 [style.color]="'#ff5722'">Turnos cancelados</h3>
-                <p class="w3-deep-orange">10</p>
-                <br>
-              </div>
-              <br>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-              <div class="w3-card-4 w3-center w3-white">
-                <br>
-                <img src={{icons[6]}} width="80" height="80" alt="icon">
-                <h3 [style.color]="'#00bcd4'">Tiempo promedio de espera</h3>
-                <p class="w3-cyan">1 minuto</p>
-                <br>
-              </div>
-              <br>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-              <div class="w3-card-4 w3-center w3-white">
-                <br>
-                <img src={{icons[4]}} width="80" height="80" alt="icon">
-                <h3 [style.color]="'#ffeb3b'">Promedio de calificaciones</h3>
-                <p class="w3-yellow">10 puntos</p>
-                <br>
-              </div>
-              <br>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-              <div class="w3-card-4 w3-center w3-white">
-                <br>
-                <img src={{icons[0]}} width="80" height="80" alt="icon">
-                <h3 [style.color]="'#009688'">Almuerzos vendidos a estudiantes con bono</h3>
-                <p class="w3-teal">100</p>
-                <br>
-              </div>
-              <br>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-              <div class="w3-card-4 w3-center w3-white">
-                <br>
-                <img src={{icons[5]}} width="80" height="80" alt="icon">
-                <h3 [style.color]="'#87CEEB'">Almuerzos vendidos a estudiantes</h3>
-                <p class="w3-light-blue">100</p>
-                <br>
-              </div>
-              <br>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-              <div class="w3-card-4 w3-center w3-white">
-                <br>
-                <img src={{icons[3]}} width="80" height="80" alt="icon">
-                <h3 [style.color]="'#f0e68c'">Almuerzos vendidos a particulares</h3>
-                <p class="w3-khaki">100</p>
-                <br>
-              </div>
-              <br>
-            </div>
-          </div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th>Fecha</th>
+                <th>Almuerzos vendidos</th>
+                <th>Turnos cancelados</th>
+                <th>Tiempo promedio</th>
+                <th>Puntuación promedio</th>
+                <th>Bono vendidos</th>
+                <th>Estudiantes vendidos</th>
+                <th>Externos vendidos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let statistic of statistics">
+                <td>{{statistic.date}}</td>
+                <td>{{statistic.sold_lunches}}</td>
+                <td>{{statistic.canceled_shifts}}</td>
+                <td>{{statistic.av_time}}</td>
+                <td>{{statistic.av_punctuation}}</td>
+                <td>{{statistic.bonus_sold}}</td>
+                <td>{{statistic.student_sold}}</td>
+                <td>{{statistic.external_sold}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
           <!-- Modal footer -->

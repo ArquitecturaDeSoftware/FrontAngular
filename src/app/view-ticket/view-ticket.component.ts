@@ -4,7 +4,6 @@ import { Router } from '@angular/router'
 import { IdUserService } from "../id-user.service";
 import {Location} from "@angular/common";
 
-
 @Component({
   selector: 'app-ticket-view',
   templateUrl: './view-ticket.component.html',
@@ -18,7 +17,9 @@ export class ViewTicketComponent implements OnInit {
   index = this.service.get("index");
   id_user = this.service.get("ced_user");
   price_user = this.service.get("price");
-  name_ticket = this.service.get("name_ticket")
+  name_ticket = this.service.get("name_ticket");
+
+  interval:any;
 
   soup;
   appetizer;
@@ -27,8 +28,6 @@ export class ViewTicketComponent implements OnInit {
   juice;
   dessert;
   salad;
-
-  falg = true;
 
   constructor(private service: IdUserService, private router: Router) {
       //evitar que la pagina retroceda
@@ -41,10 +40,23 @@ export class ViewTicketComponent implements OnInit {
   ngOnInit() {  
     this.getTurnosAnteriores();  
     this.menuByLunchroom();
+    this.interval = setInterval(data => {
+      this.getEstadoTicket();
+    },1000)
   }
 
   ngOnDestroy() {
     window.onpopstate = null;
+  }
+
+  eventFire(el, etype){
+    if (el.fireEvent) {
+      el.fireEvent('on' + etype);
+    } else {
+      var evObj = document.createEvent('Events');
+      evObj.initEvent(etype, true, false);
+      el.dispatchEvent(evObj);
+    }
   }
 
   cancelarTurno(){
@@ -141,6 +153,31 @@ export class ViewTicketComponent implements OnInit {
       }
     }).then(result => {
       this.router.navigate(['lunchrooms']);
+    }).catch(error => {
+      console.log(error)
+    });
+  }
+
+  getEstadoTicket(){
+    axios({
+      url: 'http://35.229.97.157:5000/graphql/?',
+      method: 'post',
+      data: {
+        query: `
+          query{
+            ticketByID(id_ticket:"${this.service.get("id_ticket")}"){
+              status
+            }
+          }
+        `
+      }
+    }).then(result => {
+      if (result.data.data.ticketByID.status == "CALLING") {
+        this.eventFire(document.getElementById('Llamado'), 'click');
+      }else if (result.data.data.ticketByID.status == "FINISHED"){
+        clearInterval(this.interval);
+        this.router.navigate(["lunchrooms"]);
+      }
     }).catch(error => {
       console.log(error)
     });
