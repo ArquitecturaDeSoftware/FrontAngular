@@ -26,7 +26,7 @@ export class ComponentLunchroomComponent implements OnInit {
 
   constructor(private service: IdUserService) { }
 
-  ngOnInit() {    
+  ngOnInit() {  
   }
 
   onClick(){

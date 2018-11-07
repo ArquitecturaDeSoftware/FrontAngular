@@ -141,9 +141,6 @@ export class ViewTicketComponent implements OnInit {
         query: `
           mutation{
             updateUser(id_user:"${this.service.get("id_user")}", user:{
-              cedula:"${this.service.get("ced_user")}"
-              name:"${this.service.get("name_user")}"
-              lunchroom_id:"${this.service.get("lunchroom_user")}"
               active_ticket:""
             }){
               err

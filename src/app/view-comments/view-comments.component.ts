@@ -64,7 +64,6 @@ export class ViewCommentsComponent implements OnInit {
       }
     }).then(result => {
         this.comments = result.data.data.postsByRestaurant;
-        console.log(this.service.get("id_lunchroom"));
     }).catch(error => {
       console.log(error)
     });

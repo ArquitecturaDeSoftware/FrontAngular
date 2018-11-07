@@ -42,7 +42,7 @@ export class ViewHomeComponent implements OnInit {
       data: {
         query: `
           query{
-            userById(id_user:"${this.service.get("ced_user")}"){
+            userById(cedula_user:"${this.service.get("ced_user")}"){
               t{
                 id
                 name

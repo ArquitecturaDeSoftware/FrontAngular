@@ -43,9 +43,7 @@ export class ComponentLunchroomModalComponent implements OnInit {
     this.menuPorRestaurante();   
     $("#myModal").on('hide.bs.modal', () => {
       this.clickClose();
-    }); 
-    console.log(typeof this.service.get("ced_user"));
-    
+    });     
   }
 
   clickClose(){
@@ -160,9 +158,6 @@ export class ComponentLunchroomModalComponent implements OnInit {
         query: `
           mutation{
             updateUser(id_user:"${this.service.get("id_user")}", user:{
-              cedula:"${this.service.get("ced_user")}"
-              name:"${this.service.get("name_user")}"
-              lunchroom_id:"${this.service.get("lunchroom_user")}"
               active_ticket:"${this.service.get("name_ticket")}"
             }){
               err

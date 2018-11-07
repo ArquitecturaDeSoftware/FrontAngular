@@ -126,7 +126,7 @@ export class ViewAdminComponent implements OnInit {
       data: {
         query: `
           query{
-            userById(id_user:"${this.id_user}"){
+            userById(cedula_user:"${this.id_user}"){
               t{
                 id
                 cedula
@@ -157,9 +157,6 @@ export class ViewAdminComponent implements OnInit {
         query: `
           mutation{
             updateUser(id_user:"${this.id_user}", user:{
-              cedula:"${this.ced_user}"
-              name:"${this.name_user}"
-              lunchroom_id:"${this.lunchroom_user}"
               active_ticket:""
             }){
               err
