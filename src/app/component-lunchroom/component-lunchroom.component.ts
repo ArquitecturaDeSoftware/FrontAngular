@@ -23,10 +23,17 @@ export class ComponentLunchroomComponent implements OnInit {
 
   active = false;
   src = this.service.src;
+  stars_orange:any;
+  stars_black:any;
 
   constructor(private service: IdUserService) { }
 
-  ngOnInit() {  
+  ngOnInit() {
+    this.getRatingRestaurante();  
+  }
+
+  ngOnDestroy(){
+    this.active = false;
   }
 
   onClick(){
@@ -62,8 +69,36 @@ export class ComponentLunchroomComponent implements OnInit {
     });
   }
 
-  ngOnDestroy(){
-    this.active = false;
+  getRatingRestaurante(){
+    axios({
+      url: 'http://35.229.97.157:5000/graphql/?',
+      method: 'post',
+      data: {
+        query: `
+          query{
+            postsByRestaurant(id_restaurant:"${this.id_lunchroom}"){
+              score
+            }
+          }
+        `
+      }
+    }).then(result => {      
+        var rating = result.data.data.postsByRestaurant;
+        var sum = 0;
+        if (rating.length > 0) {
+          for (let i = 0; i < rating.length; i++) {
+            sum = sum + rating[i].score;
+          }
+          sum = sum / rating.length;
+          this.stars_orange = new Array(Math.round(sum));
+          this.stars_black = new Array(5-Math.round(sum));
+        } else {
+          this.stars_orange = new Array(0);
+          this.stars_black = new Array(5);
+        }        
+    }).catch(error => {
+      console.log(error)
+    });
   }
 
 }
