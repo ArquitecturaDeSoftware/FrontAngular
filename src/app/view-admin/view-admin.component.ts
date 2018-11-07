@@ -15,9 +15,6 @@ export class ViewAdminComponent implements OnInit {
   id_current_Shift:number;
   price:number;
   id_user:String;
-  ced_user:String;
-  name_user:String;
-  lunchroom_user:String;
   line:number;
   flag = false;
   statistics = [];
@@ -129,9 +126,6 @@ export class ViewAdminComponent implements OnInit {
             userById(cedula_user:"${this.id_user}"){
               t{
                 id
-                cedula
-                name
-                lunchroom_id
               }
             }
           }
@@ -139,9 +133,6 @@ export class ViewAdminComponent implements OnInit {
       }
     }).then(result => {
       this.id_user = result.data.data.userById.t[0].id;
-      this.ced_user = result.data.data.userById.t[0].cedula;
-      this.name_user = result.data.data.userById.t[0].name;
-      this.lunchroom_user = result.data.data.userById.t[0].lunchroom_id;
       this.actuTicketActivo();
     }).catch(error => {
       console.log(error)

@@ -67,7 +67,7 @@ export class ViewTicketComponent implements OnInit {
         query: `
           mutation{
             updateTicket(id_ticket: "${this.service.get("id_ticket")}", ticket:{
-              status: "ERROR"
+              status: "CANCELLED"
             }){
               id
             }
