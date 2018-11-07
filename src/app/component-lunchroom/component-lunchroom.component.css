@@ -130,3 +130,6 @@
   transition-delay:.1s;
   }
   
+  .checked {
+    color: orange;
+}

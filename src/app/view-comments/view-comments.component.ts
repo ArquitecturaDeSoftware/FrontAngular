@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IdUserService } from "../id-user.service";
+
 import axios from 'axios'
 
 @Component({
@@ -11,6 +12,7 @@ import axios from 'axios'
 export class ViewCommentsComponent implements OnInit {
 
   comments = [];
+  rating:any;
 
   constructor(private service: IdUserService) { }
 
@@ -19,6 +21,14 @@ export class ViewCommentsComponent implements OnInit {
   }
 
   publicarComentario(nombre, correo, mensaje){
+    var a = 0;
+    this.rating = document.getElementsByName('rating');
+    for (let i = 0; i < this.rating.length; i++) {
+      if (this.rating[i].checked) {
+        a = this.rating[i].value;
+      }
+    }
+    
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
       method: 'post',
@@ -31,7 +41,7 @@ export class ViewCommentsComponent implements OnInit {
               author_name:"${nombre}"
               author_email:"${correo}"
               restaurant_id:"${this.service.get("id_lunchroom")}"
-              score: 4
+              score: ${a}
             }){
               restaurant_id
             }

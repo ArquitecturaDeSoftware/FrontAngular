@@ -9,10 +9,20 @@
         [id_lunchroom] = comment.restaurant_id
         [name_author] = comment.author_name
         [email_author] = comment.author_email
-        [text] = comment.text></app-component-comment>
+        [text] = comment.text>
+      </app-component-comment>
     </div>
+
     <div class="col-md-6" [style.marginTop.%]="5">
       <h3>Publicar un comentario</h3>
+      <fieldset class="rating">
+        <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="5 estrellas"></label>
+        <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="4 estrellas"></label>
+        <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="3 estrellas"></label>
+        <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="2 estrellas"></label>
+        <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="1 estrella"></label>
+      </fieldset> 
+      <br><br>
       <form>
         <div class="form-group">
           <label htmlFor="name">Nombre</label>
@@ -36,3 +46,4 @@
     </div>
   </div>
 </div>
+

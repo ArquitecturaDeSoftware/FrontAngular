@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div class="col-md-3">
   <div class="">
     <div class="thumbnail hovereffect">
@@ -14,9 +16,8 @@
           </h4>
         </div>
         <p>Edificio: {{num_ed}}</p>
-        <div class="progress">
-          <div class="progress-bar bg-danger" [style.width.%]="40">rating</div>
-        </div>
+        <span *ngFor="let i of stars_orange" class="fa fa-star checked"></span>
+        <span *ngFor="let i of stars_black" class="fa fa-star"></span>
         <app-component-lunchroom-modal 
           *ngIf="active" 
           (close)="active = false" 
