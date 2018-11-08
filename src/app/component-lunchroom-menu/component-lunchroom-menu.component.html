@@ -4,65 +4,45 @@
   </div>
   <div class="w3-container w3-white">
     <br>
-    <table class="table table-striped">
-      <tbody>
-        <tr>
-          <th [style.color]="'#32CD32'">Sopa</th>
-          <th>
-            <span>
-              {{soup}}
-            </span>
-          </th>
-        </tr>
-        <tr>
-          <th [style.color]="'#32CD32'">Principio</th>
-          <th>
-            <span>
-              {{appetizer}}
-            </span>
-          </th>
-        </tr>
-        <tr>
-          <th [style.color]="'#32CD32'">Seco</th>
-          <th>
-            <span>
-              {{main_course}}
-            </span>
-          </th>
-        </tr>
-        <tr>
-          <th [style.color]="'#32CD32'">Proteina</th>
-          <th>
-            <span>
-              {{protein}}
-            </span>
-          </th>
-        </tr>
-        <tr>
-          <th [style.color]="'#32CD32'">Jugo</th>
-          <th>
-            <span>
-              {{juice}}
-            </span>
-          </th>
-        </tr>
-        <tr>
-          <th [style.color]="'#32CD32'">Postre</th>
-          <th>
-            <span>
-              {{dessert}}
-            </span>
-          </th>
-        </tr>
-        <tr>
-          <th [style.color]="'#32CD32'">Ensalada</th>
-          <th>
-            <span>
-              {{salad}}
-            </span>
-          </th>
-        </tr>
-      </tbody>
-    </table>
+    <form>
+        <table class="example-full-width" cellspacing="0"><tr>
+            <td><mat-form-field class="example-full-width">
+              <input matInput placeholder="Sopa" disabled value="{{soup}}"/>
+            </mat-form-field></td>
+            <td><mat-form-field class="example-full-width">
+                <input matInput placeholder="Principio" disabled value="{{appetizer}}"/>
+            </mat-form-field></td>
+          </tr></table>
+        <table class="example-full-width" cellspacing="0"><tr>
+            <td><mat-form-field class="example-full-width">
+              <input matInput placeholder="Seco" disabled value="{{main_course}}"/>
+            </mat-form-field></td>
+            <td><mat-form-field class="example-full-width">
+                <input matInput placeholder="Proteina" disabled value="{{protein}}"/>
+            </mat-form-field></td>
+          </tr></table>
+        <table class="example-full-width" cellspacing="0"><tr>
+            <td><mat-form-field class="example-full-width">
+              <input matInput placeholder="Jugo" disabled value="{{juice}}"/>
+            </mat-form-field></td>
+            <td><mat-form-field class="example-full-width">
+                <input matInput placeholder="Postre" disabled value="{{dessert}}"/>
+            </mat-form-field></td>
+          </tr></table>  
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Ensalada" disabled value="{{salad}}"/>
+          </mat-form-field>
+
+          <table class="example-full-width" cellspacing="0"><tr>
+              <td><mat-form-field class="example-full-width">
+                  <input matInput placeholder="Precio" disabled value="{{price}}" type="number"/>
+                  <span matPrefix>$&nbsp;</span>
+              </mat-form-field></td>
+              <td><mat-form-field class="example-full-width">
+                  <input matInput placeholder="Tiempo Aprox." disabled value="{{line}} min."/>
+              </mat-form-field></td>
+            </tr></table>
+    </form>
+   
   </div>
 </div>

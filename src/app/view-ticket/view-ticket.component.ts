@@ -75,7 +75,7 @@ export class ViewTicketComponent implements OnInit {
         `
       }
     }).then(result => {
-      this.actuTicketActivo();
+      //this.actuTicketActivo();
     }).catch(error => {
       console.log(error)
     });

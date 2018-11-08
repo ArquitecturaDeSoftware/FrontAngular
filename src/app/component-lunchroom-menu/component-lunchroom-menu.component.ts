@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { IdUserService } from "../id-user.service";
+
 
 @Component({
   selector: 'app-component-lunchroom-menu',
@@ -14,11 +16,17 @@ export class ComponentLunchroomMenuComponent implements OnInit {
   @Input () juice;
   @Input () dessert;
   @Input () salad;
+  
 
-  constructor() { 
+  price: number;
+  line : number;
+  
+  constructor(private service: IdUserService) { 
   }
-
+  
   ngOnInit() {
+    this.price = this.service.get("price")
+    this.line = this.service.get("line");
   }
 
 }

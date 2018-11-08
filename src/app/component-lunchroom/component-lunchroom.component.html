@@ -1,37 +1,52 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<div class="col-md-3">
-  <div class="">
-    <div class="thumbnail hovereffect">
-      <img class="img-responsive"
+<div class="col-md-4">
+    <mat-card matBadge="{{line}}" matBadgePosition="before" matBadgeColor="#008000">
+      <mat-card-header>
+          <mat-card-title>{{name_lunchroom}}</mat-card-title>
+          <mat-card-subtitle>Edificio: {{num_ed}}</mat-card-subtitle>
+          <button mat-mini-fab color="accent" (click)="clickVerComentarios()"><b>4.8</b></button>
+      </mat-card-header>
+      <img mat-card-image
         src={{src[index]}}
         alt={{name_lunchroom}}
-        (click)="onClick()"
-        data-toggle="modal"
-        data-target="#myModal"/>
+        />
       <div class="caption">
-        <div [ngStyle]="{'color': '#337ab7', 'height':'50px', 'display':'table', 'width':'100%' }" >
-          <h4 [ngStyle]="{'vertical-align':'middle', 'display':'table-cell'}" >
-            {{name_lunchroom}}
-          </h4>
-        </div>
-        <p>Edificio: {{num_ed}}</p>
-        <span *ngFor="let i of stars_orange" class="fa fa-star checked"></span>
-        <span *ngFor="let i of stars_black" class="fa fa-star"></span>
         <app-component-lunchroom-modal 
-          *ngIf="active" 
-          (close)="active = false" 
-          [id_lunchroom]=id_lunchroom 
+          *ngIf="active_menu" 
+          (close)="active_menu = false" 
+          [id_lunchroom]=id_lunchroom
+          [line]=line>
+        </app-component-lunchroom-modal>
+      </div>
+      <div class="caption">
+        <app-component-lunchroom-modal-ticket 
+          *ngIf="active_ticket" 
+          (close)="active_ticket = false"
+          [id_lunchroom]=id_lunchroom
           [name_lunchroom] = name_lunchroom
-          [index] = index
           [code_lunchroom] = code_lunchroom
           [principal_count] = principal_count
           [open_time] = open_time
           [close_time] = close_time
           [num_lunches] = num_lunches
           [num_ed] = num_ed>
-        </app-component-lunchroom-modal>
+        </app-component-lunchroom-modal-ticket>
       </div>
-    </div>
-  </div>
+      <mat-card-actions >
+          <div class="col-xs-6 col-md-6 col-lg-6">
+            <button  
+              mat-raised-button color="primary"
+              (click)="clickPedirTurno()" 
+              data-toggle="modal"
+              data-target="#myModalTicket"
+              >TURNO</button>  
+          </div>
+          <div class="col-xs-6 col-md-6 col-lg-6">
+            <button  mat-raised-button               
+              (click)="clickMenu()"
+              data-toggle="modal"
+              data-target="#myModal">MENÚ</button>
+          </div>
+        </mat-card-actions>
+    </mat-card>
+    <br>
 </div>

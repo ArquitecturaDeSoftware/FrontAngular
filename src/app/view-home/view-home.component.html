@@ -81,22 +81,20 @@
           </a>
         </div>
       </div>
+      
+
       <div class="col-md-6">
         <div class="cont">
           <h2 [style.color]="'#337AB7'">Ingresar</h2>
           <hr/>
-          <div
-          class="input-group"
-          [style.marginTop.%]="25">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input #cedula id="cedula" type="text" class="form-control" ref="cedula" placeholder="Cédula"/>
+          <div>
+              <mat-form-field>
+                <input matInput #cedula id="email" type="text"  ref="cedula" placeholder="Cédula"/>
+              </mat-form-field>
           </div>
-          <div *ngIf="id">
-            <p [style.color]="'red'">Por favor ingrese su cédula</p>
-          </div>
-
-          <button
-            type="button" name="ingresar" class="w3-btn w3-teal w3-block"
+          <div>    
+            <button
+            name="ingresar" mat-raised-button color="primary"
             [style.marginTop.%]="5" (click)="onClick(cedula.value)" >
             Ingresar
           </button>          

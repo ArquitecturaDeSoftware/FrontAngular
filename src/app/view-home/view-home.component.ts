@@ -24,7 +24,7 @@ export class ViewHomeComponent implements OnInit {
   }
 
   onClick(value){
-    this.service.set("ced_user", value); 
+    this.service.set("ced_user", value);
     if (value != "") {
       this.getUsuario(value)
     }
@@ -61,6 +61,8 @@ export class ViewHomeComponent implements OnInit {
         this.service.set("name_user", result.data.data.userById.t[0].name);        
         this.service.set("lunchroom_user", result.data.data.userById.t[0].lunchroom_id);
         this.service.set("active_ticket", result.data.data.userById.t[0].active_ticket);
+        this.service.set("id_ticket", result.data.data.userById.t[0].active_ticket);
+        this.service.set("price", result.data.data.userById.t[0].price);
         this.router.navigate(['lunchrooms']);
       }
     }).catch(error => {
@@ -82,6 +84,7 @@ export class ViewHomeComponent implements OnInit {
               active_ticket:""
             }){
               t{
+                id
                 active_ticket
                 lunchroom_id
               }
@@ -90,9 +93,11 @@ export class ViewHomeComponent implements OnInit {
         `
       }
     }).then(result => {
+      this.service.set("id_user", result.data.data.createUser.t.id);
       this.service.set("lunchroom_user", "none");      
       this.service.set("active_ticket", "");
       this.router.navigate(['lunchrooms']);
+      this.service.set("price", "6500");
     }).catch(error => {
       console.log(error)
     });

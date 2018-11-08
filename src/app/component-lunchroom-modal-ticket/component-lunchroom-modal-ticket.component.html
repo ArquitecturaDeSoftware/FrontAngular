@@ -1,0 +1,38 @@
+ <!-- The Modal -->
+ <div class="modal fade" id="myModalTicket">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div [style.marginTop.%]="2">
+
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <button *ngIf="!view_ticket" mat-raised-button color="primary"               
+                (click)="crearTicket()">Pedir Turno</button>
+                <mat-card *ngIf="view_ticket">
+                    <app-component-lunchroom-ticket
+                      [name_ticket] = name_ticket>
+                    </app-component-lunchroom-ticket>
+                    <mat-card-actions>
+                        <button  mat-raised-button color="warn"               
+                        (click)="cancelarTurno()">Cancelar Turno</button>
+                    </mat-card-actions>
+                </mat-card>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button mat-raised-button color="warn" data-dismiss="modal" (click)="clickClose()">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

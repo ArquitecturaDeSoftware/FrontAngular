@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IdUserService } from "../id-user.service";
 import axios from "axios";
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -20,26 +22,55 @@ export class ComponentLunchroomComponent implements OnInit {
   @Input () close_time;
   @Input () num_lunches;
   
-
-  active = false;
+  line : number;
+  active_menu : boolean;
+  active_ticket : boolean;
+  id_lunchroom_ticket: String;
   src = this.service.src;
   stars_orange:any;
   stars_black:any;
 
-  constructor(private service: IdUserService) { }
+  constructor(private service: IdUserService, private router: Router) {}
 
-  ngOnInit() {
-    this.getRatingRestaurante();  
+
+  ngOnInit() {  
+    this.active_menu = false;
+    this.active_ticket = false;
+    this.getTicketActive(this.service.get("active_ticket"));
+    setInterval(() => {
+      if(this.service.get("active_ticket") != null && this.service.get("active_ticket") != ""  && this.id_lunchroom == this.service.get("id_lunchroom_ticket")){
+        this.getTurnosAnteriores();
+      }else{
+        this.getTicketsAdelantePorRestaurante();
+      }
+      
+    },1000);  
   }
 
-  ngOnDestroy(){
-    this.active = false;
+  getTicketActive(id){
+    axios({
+      url: 'http://35.229.97.157:5000/graphql/?',
+      method: 'post',
+      data: {
+        query: `
+          query{
+            ticketByID(id_ticket:"${id}"){
+              lunchroomId
+            }
+          }
+        `
+      }
+    }).then(result => {
+      this.service.set("id_lunchroom_ticket", result.data.data.ticketByID.lunchroomId);
+      
+    }).catch(error => {
+      console.log(error)
+    });
   }
 
-  onClick(){
-    this.active = true;
+  clickMenu(){
+    this.active_menu = true;
     this.service.set("id_lunchroom", this.id_lunchroom);
-    this.getTicketsPorRestaurante();
     if (this.id_lunchroom == this.service.get("lunchroom_user")) {
       this.service.set("price", "0");
     }else if(this.service.get("lunchroom_user") == "none"){
@@ -49,7 +80,7 @@ export class ComponentLunchroomComponent implements OnInit {
     }
   }
 
-  getTicketsPorRestaurante(){
+  getTicketsAdelantePorRestaurante(){
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
       method: 'post',
@@ -63,42 +94,46 @@ export class ComponentLunchroomComponent implements OnInit {
         `
       }
     }).then(result => {
-        this.service.set("line", result.data.data.ticketsByRestaurant.length);
+          this.line = result.data.data.ticketsByRestaurant.length;
     }).catch(error => {
       console.log(error)
     });
   }
 
-  getRatingRestaurante(){
+  ngOnDestroy(){
+    this.active_menu = false;
+    this.active_ticket = false;
+  }
+  
+  clickVerComentarios(){
+    this.service.set("id_lunchroom", this.id_lunchroom);
+    this.router.navigate(['comments']);
+  }
+
+  clickPedirTurno(){  
+    this.active_ticket = true;
+    this.service.set("name_lunchroom", this.name_lunchroom);
+    this.service.set("index", this.index);
+    this.service.set("id_lunchroom", this.id_lunchroom);
+  }
+
+  getTurnosAnteriores(){
     axios({
       url: 'http://35.229.97.157:5000/graphql/?',
       method: 'post',
       data: {
         query: `
           query{
-            postsByRestaurant(id_restaurant:"${this.id_lunchroom}"){
-              score
+            ticketsBefore(id_ticket:"${this.service.get("active_ticket")}"){
+              id
             }
           }
         `
       }
-    }).then(result => {      
-        var rating = result.data.data.postsByRestaurant;
-        var sum = 0;
-        if (rating.length > 0) {
-          for (let i = 0; i < rating.length; i++) {
-            sum = sum + rating[i].score;
-          }
-          sum = sum / rating.length;
-          this.stars_orange = new Array(Math.round(sum));
-          this.stars_black = new Array(5-Math.round(sum));
-        } else {
-          this.stars_orange = new Array(0);
-          this.stars_black = new Array(5);
-        }        
+    }).then(result => {
+      this.line = result.data.data.ticketsBefore.length;
     }).catch(error => {
       console.log(error)
     });
   }
-
 }
