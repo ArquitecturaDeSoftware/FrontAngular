@@ -10,7 +10,8 @@ import { IdUserService } from "../id-user.service";
 
 export class ViewAdminComponent implements OnInit {
 
-  id_lunchroom = "5bd668a7160100435c3ba483";
+  id_lunchroom = this.service.get("id_lunchroom");
+  name_lunchroom = this.service.get("name_lunchroom");
   name_current_Shift:String;
   id_current_Shift:number;
   price:number;
