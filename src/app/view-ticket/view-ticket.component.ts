@@ -61,7 +61,7 @@ export class ViewTicketComponent implements OnInit {
 
   cancelarTurno(){
     axios({
-      url: 'http://35.229.97.157:5000/graphql/?',
+      url: 'http://35.231.46.158/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -83,7 +83,7 @@ export class ViewTicketComponent implements OnInit {
 
   menuByLunchroom(){
     axios({
-      url: 'http://35.229.97.157:5000/graphql/?',
+      url: 'http://35.231.46.158/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -115,7 +115,7 @@ export class ViewTicketComponent implements OnInit {
 
   getTurnosAnteriores(){
     axios({
-      url: 'http://35.229.97.157:5000/graphql/?',
+      url: 'http://35.231.46.158/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -135,7 +135,7 @@ export class ViewTicketComponent implements OnInit {
 
   actuTicketActivo(){
     axios({
-      url: 'http://35.229.97.157:5000/graphql/?',
+      url: 'http://35.231.46.158/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -157,7 +157,7 @@ export class ViewTicketComponent implements OnInit {
 
   getEstadoTicket(){
     axios({
-      url: 'http://35.229.97.157:5000/graphql/?',
+      url: 'http://35.231.46.158/graphql/?',
       method: 'post',
       data: {
         query: `

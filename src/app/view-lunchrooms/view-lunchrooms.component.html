@@ -3,7 +3,7 @@
 </div>
 <div class="container container-container">
   <div className="row">
-    <div *ngFor="let lunchroom of service.all_lunchrooms; let i=index">
+    <div *ngFor="let lunchroom of all_lunchrooms; let i=index">
       <app-component-lunchroom 
         [id_lunchroom] = lunchroom._id 
         [name_lunchroom] = lunchroom.name 

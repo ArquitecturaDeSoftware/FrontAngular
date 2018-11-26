@@ -14,7 +14,12 @@ export class ViewHomeLoginAdminComponent implements OnInit {
   name_lunchroom = "Seleccione un comedor";
   all_lunchrooms = [];
 
-  constructor(private router: Router, private service: IdUserService) { }
+  constructor(private router: Router, private service: IdUserService) {
+    history.pushState(null, null, null);
+      window.onpopstate = function () {        
+        history.go(1);
+      };
+   }
 
   ngOnInit() {
     this.getTodosRestaurantes();
@@ -28,7 +33,7 @@ export class ViewHomeLoginAdminComponent implements OnInit {
 
   clickLogin(email, password){
     axios({
-      url: 'http://35.229.97.157:5000/graphql/?',
+      url: 'http://35.231.46.158/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -63,7 +68,7 @@ export class ViewHomeLoginAdminComponent implements OnInit {
 
   getTodosRestaurantes(){
     axios({
-      url: 'http://35.229.97.157:5000/graphql/?',
+      url: 'http://35.231.46.158/graphql/?',
       method: 'post',
       data: {
         query: `

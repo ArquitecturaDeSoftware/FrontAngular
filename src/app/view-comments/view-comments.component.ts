@@ -30,7 +30,7 @@ export class ViewCommentsComponent implements OnInit {
     }
     
     axios({
-      url: 'http://35.229.97.157:5000/graphql/?',
+      url: 'http://35.231.46.158/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -57,7 +57,7 @@ export class ViewCommentsComponent implements OnInit {
 
   getAllComments(){
     axios({
-      url: 'http://35.229.97.157:5000/graphql/?',
+      url: 'http://35.231.46.158/graphql/?',
       method: 'post',
       data: {
         query: `

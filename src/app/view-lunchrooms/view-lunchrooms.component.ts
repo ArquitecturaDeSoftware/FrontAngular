@@ -9,8 +9,10 @@ import axios from "axios";
 })
 export class ViewLunchroomsComponent implements OnInit {
 
-  constructor( private service: IdUserService) {  
+  constructor( ) {  
   }
+
+  all_lunchrooms = [];
 
   ngOnInit() {   
     this.getLunchrooms();    
@@ -18,7 +20,7 @@ export class ViewLunchroomsComponent implements OnInit {
 
   getLunchrooms(){
     axios({
-      url: 'http://35.229.97.157:5000/graphql/?',
+      url: 'http://35.231.46.158/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -37,7 +39,7 @@ export class ViewLunchroomsComponent implements OnInit {
         `
       }
     }).then(result => {
-        this.service.all_lunchrooms = result.data.data.allLunchrooms;                      
+        this.all_lunchrooms = result.data.data.allLunchrooms;                      
     }).catch(error => {
       console.log(error)
     });
