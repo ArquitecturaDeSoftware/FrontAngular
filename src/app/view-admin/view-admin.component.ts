@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
+import { Router } from '@angular/router'
 import { IdUserService } from "../id-user.service";
 
 @Component({
@@ -19,10 +20,12 @@ export class ViewAdminComponent implements OnInit {
   line:number;
   flag = false;
   statistics = [];
+
+  interval:any;
 //  icons = this.service.icons;
 
-  constructor( private service: IdUserService ) { 
-    setInterval(data => {
+  constructor(private router: Router, private service: IdUserService ) { 
+    this.interval = setInterval(data => {
       this.getSiguienteTicket();
       this.getTodosTickets();
     },3000)
@@ -30,7 +33,11 @@ export class ViewAdminComponent implements OnInit {
 
   ngOnInit() { 
     this.getSiguienteTicket();
-    this.getEstadisticas();
+    this.getEstadisticas();    
+  }
+
+  ngOnDestroy(){
+    clearInterval(this.interval);
   }
 
   clickChangeTicket(){
@@ -40,6 +47,11 @@ export class ViewAdminComponent implements OnInit {
 
   clickClose(){
     
+  }
+
+  logout(){
+    this.service.set("token", ""); 
+    this.router.navigate(['login'])
   }
 
   getSiguienteTicket(){
@@ -128,15 +140,13 @@ export class ViewAdminComponent implements OnInit {
         query: `
           query{
             userById(cedula_user:"${this.id_user}"){
-              t{
-                id
-              }
+              _id
             }
           }
         `
       }
     }).then(result => {
-      this.id_user = result.data.data.userById.t[0].id;
+      this.id_user = result.data.data.userById._id;
       this.actuTicketActivo();
     }).catch(error => {
       console.log(error)
@@ -188,7 +198,6 @@ export class ViewAdminComponent implements OnInit {
       }
     }).then(result => {
       this.statistics = result.data.data.allStatistics.t;
-      console.log(this.statistics);
     }).catch(error => {
       console.log(error)
     });

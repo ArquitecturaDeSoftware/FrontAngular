@@ -16,6 +16,7 @@ export class IdUserService {
 // lunchroom_user   ver el restaurante al cual esta afiliado el usuario
 // price            precio del almuerzo
 // line             tamaño de la fila
+// token            token de sesion
 
   all_lunchrooms = [];
   src = ["../assets/lunchrooms/geologia.png",

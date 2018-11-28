@@ -18,3 +18,11 @@
     padding: 5% 10% 10% 10%;
     box-shadow: inset 1px 1px 1px grey;
   }
+
+  .btn-group, .btn-group-vertical{
+    display: block;
+  }
+
+  .open>.dropdown-menu{
+    width: -webkit-fill-available;
+  }

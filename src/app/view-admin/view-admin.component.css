@@ -35,6 +35,21 @@
     color: #F8F8F8;
     text-align: center;
   }
+
+  .title[_ngcontent-c1]{
+    display: inline-block;
+  }
+
+  .color[_ngcontent-c1]{
+    position: relative;
+  }
   
+  .btn-group-lg>.btn, .btn-lg{
+    font-size: 15px;
+    position: absolute; 
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
   

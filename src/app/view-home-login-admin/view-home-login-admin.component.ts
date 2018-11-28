@@ -15,10 +15,7 @@ export class ViewHomeLoginAdminComponent implements OnInit {
   all_lunchrooms = [];
 
   constructor(private router: Router, private service: IdUserService) {
-    history.pushState(null, null, null);
-      window.onpopstate = function () {        
-        history.go(1);
-      };
+    
    }
 
   ngOnInit() {
@@ -37,26 +34,41 @@ export class ViewHomeLoginAdminComponent implements OnInit {
       method: 'post',
       data: {
         query: `
+          mutation{
+            login(login:{
+              name:"${email}"
+              password:"${password}"
+            })
+          }
+        `
+      }
+    }).then(result => {
+      if(result.data.data.login == null){
+        alert("Usuario o contraseña incorrecta");
+      }else{
+        this.service.set("token", result.data.data.login)
+        this.verifyLunchroom(email);
+      }
+    }).catch(error => {
+      console.log(error)
+    });
+  }
+
+  verifyLunchroom(email){
+    axios({
+      url: 'http://35.231.46.158/graphql/?',
+      method: 'post',
+      data: {
+        query: `
           query{
             userById(cedula_user:"${email}"){
-              t{
-                password
-                lunchroom_id
-              }
+              lunchroom_id
             }
           }
         `
       }
     }).then(result => {
-      if (result.data.data.userById == null || result.data.data.userById.t == null) {
-        alert("Ingresa un usuario válido");
-      } else if(password == ""){
-        alert("Ingresa una contraseña");
-      } else if(result.data.data.userById.t[0].password != password){
-        alert("Contraseña incorrecta");
-      }else if(result.data.data.userById.t[0].lunchroom_id != this.service.get("id_lunchroom")){
-        console.log(result.data.data.userById.t[0].lunchroom_id, this.service.get("id_lunchroom"));
-        
+      if(result.data.data.userById.lunchroom_id != this.service.get("id_lunchroom")){        
         alert("No puedes acceder a este restaurante");
       }else{
         this.router.navigate(["admin"]);
