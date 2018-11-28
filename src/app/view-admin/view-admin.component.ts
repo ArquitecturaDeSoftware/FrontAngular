@@ -153,9 +153,7 @@ export class ViewAdminComponent implements OnInit {
           mutation{
             updateUser(id_user:"${this.id_user}", user:{
               active_ticket:""
-            }){
-              err
-            }
+            })
           }
         `
       }

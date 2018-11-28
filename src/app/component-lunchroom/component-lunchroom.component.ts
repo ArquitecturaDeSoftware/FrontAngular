@@ -82,9 +82,16 @@ export class ComponentLunchroomComponent implements OnInit {
           }
         `
       }
-    }).then(result => {      
-        var rating = result.data.data.postsByRestaurant;
+    }).then(result => { 
+        var rating;
         var sum = 0;
+        
+        if(result.data.data != null){
+          rating = result.data.data.postsByRestaurant;
+        }else{
+          rating = "";
+        }
+             
         if (rating.length > 0) {
           for (let i = 0; i < rating.length; i++) {
             sum = sum + rating[i].score;

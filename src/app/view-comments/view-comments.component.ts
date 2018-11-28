@@ -25,7 +25,7 @@ export class ViewCommentsComponent implements OnInit {
     this.rating = document.getElementsByName('rating');
     for (let i = 0; i < this.rating.length; i++) {
       if (this.rating[i].checked) {
-        a = this.rating[i].value;
+        a = this.rating[i].value;        
       }
     }
     
@@ -36,7 +36,7 @@ export class ViewCommentsComponent implements OnInit {
         query: `
           mutation{
             createPost(post:{
-              id: 1
+              id: 0
               text:"${mensaje}"
               author_name:"${nombre}"
               author_email:"${correo}"
@@ -73,7 +73,9 @@ export class ViewCommentsComponent implements OnInit {
         `
       }
     }).then(result => {
-        this.comments = result.data.data.postsByRestaurant;
+        if(result.data.data != null){
+          this.comments = result.data.data.postsByRestaurant;
+        }
     }).catch(error => {
       console.log(error)
     });

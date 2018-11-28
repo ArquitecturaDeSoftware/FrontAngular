@@ -159,13 +159,12 @@ export class ComponentLunchroomModalComponent implements OnInit {
           mutation{
             updateUser(id_user:"${this.service.get("id_user")}", user:{
               active_ticket:"${this.service.get("name_ticket")}"
-            }){
-              err
-            }
+            })
           }
         `
       }
     }).then(result => {
+        if(result.data.data.updateUser == "Updated")
         this.router.navigate(['tickets']);
     }).catch(error => {
       console.log(error)

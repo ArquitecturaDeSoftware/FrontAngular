@@ -43,24 +43,22 @@ export class ViewHomeComponent implements OnInit {
         query: `
           query{
             userById(cedula_user:"${this.service.get("ced_user")}"){
-              t{
-                id
-                name
-                active_ticket
-                lunchroom_id
-              }
+              _id
+              name
+              active_ticket
+              lunchroom_id
             }
           }
         `
       }
     }).then(result => {
-      if (result.data.data.userById.t == null) {
+      if (result.data.data == null) {
         this.crearUsuario(value);
-      }else{
-        this.service.set("id_user", result.data.data.userById.t[0].id);
-        this.service.set("name_user", result.data.data.userById.t[0].name);        
-        this.service.set("lunchroom_user", result.data.data.userById.t[0].lunchroom_id);
-        this.service.set("active_ticket", result.data.data.userById.t[0].active_ticket);
+      }else{        
+        this.service.set("id_user", result.data.data.userById._id);
+        this.service.set("name_user", result.data.data.userById.name);        
+        this.service.set("lunchroom_user", result.data.data.userById.lunchroom_id);
+        this.service.set("active_ticket", result.data.data.userById.active_ticket);
         this.router.navigate(['lunchrooms']);
       }
     }).catch(error => {
@@ -77,14 +75,13 @@ export class ViewHomeComponent implements OnInit {
           mutation{
             createUser(user:{
               cedula:"${value}"
-              name:""
+              name:" "
               lunchroom_id:"none"
-              active_ticket:""
+              active_ticket:" "
+              password: " "
             }){
-              t{
                 active_ticket
                 lunchroom_id
-              }
             }
           }
         `

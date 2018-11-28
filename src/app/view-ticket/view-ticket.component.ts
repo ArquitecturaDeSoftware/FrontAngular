@@ -47,6 +47,7 @@ export class ViewTicketComponent implements OnInit {
 
   ngOnDestroy() {
     window.onpopstate = null;
+    clearInterval(this.interval);
   }
 
   eventFire(el, etype){
@@ -142,9 +143,7 @@ export class ViewTicketComponent implements OnInit {
           mutation{
             updateUser(id_user:"${this.service.get("id_user")}", user:{
               active_ticket:""
-            }){
-              err
-            }
+            })
           }
         `
       }
