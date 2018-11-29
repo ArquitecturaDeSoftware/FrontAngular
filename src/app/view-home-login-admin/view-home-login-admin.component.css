@@ -24,5 +24,5 @@
   }
 
   .open>.dropdown-menu{
-    width: -webkit-fill-available;
+    width: -webkit-stretch;
   }

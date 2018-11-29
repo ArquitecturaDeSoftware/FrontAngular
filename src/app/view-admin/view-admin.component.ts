@@ -20,6 +20,7 @@ export class ViewAdminComponent implements OnInit {
   line:number;
   flag = false;
   statistics = [];
+  token = this.service.get("token");
 
   interval:any;
 //  icons = this.service.icons;
@@ -32,12 +33,17 @@ export class ViewAdminComponent implements OnInit {
   }
 
   ngOnInit() { 
-    this.getSiguienteTicket();
-    this.getEstadisticas();    
+    if(this.token == undefined || this.token == ""){
+      this.router.navigate([""]);
+    }else{
+      this.getSiguienteTicket();
+      this.getEstadisticas();    
+    }
   }
 
   ngOnDestroy(){
     clearInterval(this.interval);
+    this.service.set("token", "");
   }
 
   clickChangeTicket(){
@@ -61,7 +67,7 @@ export class ViewAdminComponent implements OnInit {
       data: {
         query: `
           query{
-            nextTicket(id_restaurant:"${this.id_lunchroom}"){
+            nextTicketToken(id_restaurant:"${this.id_lunchroom}", token:"${this.token}"){
               id
               name
               price
@@ -71,10 +77,10 @@ export class ViewAdminComponent implements OnInit {
         `
       }
     }).then(result => {
-        this.id_current_Shift = result.data.data.nextTicket.id; 
-        this.name_current_Shift = result.data.data.nextTicket.name; 
-        this.price = result.data.data.nextTicket.price;
-        this.id_user = result.data.data.nextTicket.userid;
+        this.id_current_Shift = result.data.data.nextTicketToken.id; 
+        this.name_current_Shift = result.data.data.nextTicketToken.name; 
+        this.price = result.data.data.nextTicketToken.price;
+        this.id_user = result.data.data.nextTicketToken.userid;
         if (this.flag == false) {
           this.updateTicket("CALLING");
         }
@@ -91,7 +97,7 @@ export class ViewAdminComponent implements OnInit {
       data: {
         query: `
           mutation{
-            updateTicket(id_ticket: "${this.id_current_Shift}", ticket:{
+            updateTicketToken(id_ticket: "${this.id_current_Shift}", token:"${this.token}" ticket:{
               status: "${status}"
             }){
               lunchroomId
@@ -118,14 +124,14 @@ export class ViewAdminComponent implements OnInit {
       data: {
         query: `
           query{
-            ticketsByRestaurant(id_restaurant:"${this.id_lunchroom}"){
+            ticketsByRestaurantToken(id_restaurant:"${this.id_lunchroom}", token:"${this.token}"){
               id
             }
           }
         `
       }
     }).then(result => {
-        this.line = result.data.data.ticketsByRestaurant.length;
+        this.line = result.data.data.ticketsByRestaurantToken.length;
     }).catch(error => {
       console.log(error)
     });
@@ -139,14 +145,14 @@ export class ViewAdminComponent implements OnInit {
       data: {
         query: `
           query{
-            userById(cedula_user:"${this.id_user}"){
+            userByIdToken(cedula_user:"${this.id_user}", token:"${this.token}"){
               _id
             }
           }
         `
       }
     }).then(result => {
-      this.id_user = result.data.data.userById._id;
+      this.id_user = result.data.data.userByIdToken._id;
       this.actuTicketActivo();
     }).catch(error => {
       console.log(error)
@@ -161,8 +167,8 @@ export class ViewAdminComponent implements OnInit {
       data: {
         query: `
           mutation{
-            updateUser(id_user:"${this.id_user}", user:{
-              active_ticket:""
+            updateUserToken(id_user:"${this.id_user}", token:"${this.token}", user:{
+              active_ticket:" "
             })
           }
         `
