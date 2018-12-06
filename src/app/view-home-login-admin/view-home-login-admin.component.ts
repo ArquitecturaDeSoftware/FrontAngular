@@ -45,8 +45,9 @@ export class ViewHomeLoginAdminComponent implements OnInit {
     }).then(result => {
       if(result.data.data.login == null){
         alert("Usuario o contraseña incorrecta");
-      }else{
-        this.service.set("token", result.data.data.login)
+      }else if (result.data.data.login == "Usuario no registrado en LDAP pero si en la base de datos"){
+        alert("No tienes acceso: LDAP no encontrado");
+      }else{ this.service.set("token", result.data.data.login)
         this.verifyLunchroom(email);
       }
     }).catch(error => {
