@@ -51,7 +51,7 @@ export class ComponentLunchroomComponent implements OnInit {
 
   getTicketsPorRestaurante(){
     axios({
-      url: 'http://35.231.46.158/graphql/?',
+      url: 'http://34.73.155.196/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -71,7 +71,7 @@ export class ComponentLunchroomComponent implements OnInit {
 
   getRatingRestaurante(){
     axios({
-      url: 'http://35.231.46.158/graphql/?',
+      url: 'http://34.73.155.196/graphql/?',
       method: 'post',
       data: {
         query: `

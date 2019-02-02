@@ -30,7 +30,7 @@ export class ViewHomeLoginAdminComponent implements OnInit {
 
   clickLogin(email, password){
     axios({
-      url: 'http://35.231.46.158/graphql/?',
+      url: 'http://34.73.155.196/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -57,7 +57,7 @@ export class ViewHomeLoginAdminComponent implements OnInit {
 
   verifyLunchroom(email){
     axios({
-      url: 'http://35.231.46.158/graphql/?',
+      url: 'http://34.73.155.196/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -81,7 +81,7 @@ export class ViewHomeLoginAdminComponent implements OnInit {
 
   getTodosRestaurantes(){
     axios({
-      url: 'http://35.231.46.158/graphql/?',
+      url: 'http://34.73.155.196/graphql/?',
       method: 'post',
       data: {
         query: `

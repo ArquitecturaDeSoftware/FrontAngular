@@ -9,6 +9,27 @@
         <h2 [style.color]="'#337AB7'">Iniciar sesión como administrador</h2>
         <hr>
         <div class="w3-container w3-padding">
+          <br>
+          <button class="w3-btn w3-block w3-blue" data-toggle="collapse" data-target="#lunchrooms">
+            {{name_lunchroom}}
+          </button>
+          <div class="collapse" id="lunchrooms">
+            <ul class="w3-ul">
+              <li *ngFor="let lunchroom of all_lunchrooms" class="w3-hover-light-blue" data-toggle="collapse" data-target="#lunchrooms" (click)="onClick(lunchroom.name, lunchroom._id)" >
+                {{lunchroom.name}}
+              </li>
+            </ul>
+          </div>
+          <br>
+          <input #email class="w3-input" type="text" placeholder="Usuario">
+          <br>
+          <input #password class="w3-input" type="password" placeholder="Contraseña">
+          <br>
+          <br>
+          <br>
+          <button class="w3-btn w3-right w3-green" (click)="clickLogin(email.value, password.value)">Aceptar</button>
+        </div>
+        <!-- <div class="w3-container w3-padding">
           <br>          
 
           <div class="btn-group">
@@ -32,7 +53,7 @@
           <br>
           <br>
           <button class="w3-btn w3-right w3-green" (click)="clickLogin(email.value, password.value)">Aceptar</button>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
