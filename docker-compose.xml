@@ -3,6 +3,6 @@ services:
   frontAngular:
     build: .
     ports:
-    - 4200:4200
+    - 4201:4201
 
 
