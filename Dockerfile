@@ -9,6 +9,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN npm install
+RUN npm install -g @angular/cli
 # If you are building your code for production
 # RUN npm install --only=production
 
@@ -16,4 +17,4 @@ RUN npm install
 COPY . .
 
 EXPOSE 4201
-CMD [ "npm", "start" ]
+CMD [ "nmp", "start" ]
