@@ -1,8 +1,0 @@
-version: '2.3'
-services: 
-  frontAngular:
-    build: .
-    ports:
-    - 4201:4201
-
-

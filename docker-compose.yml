@@ -1,7 +1,8 @@
 version: '2'
 services: 
-  FrontA:
-    image: jscastel97/angularfront
+  front-angular:
+    build: .
     ports:
-    - 4300:4300
-  
+    - 4201:4201
+
+
