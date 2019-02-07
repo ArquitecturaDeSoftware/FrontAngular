@@ -4,5 +4,8 @@ services:
     build: .
     ports:
     - 4201:4201
+    comand : /app/node_modules/.bin/ng serve
+    volumes:
+        - .:/app
 
 
