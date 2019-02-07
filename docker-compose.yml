@@ -1,7 +1,9 @@
 version: '2'
 services: 
   front-angular:
-    build: .
+    images: hcrodriguezl/front_angular
+    volumes:
+    - ./sapiens:/usr/src/app
     ports:
     - 4201:4201
 
