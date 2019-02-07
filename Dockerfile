@@ -16,4 +16,4 @@ RUN npm install
 COPY . .
 
 EXPOSE 4201
-CMD [ "ng", "serve" ]
+CMD [ "npm", "start" ]
