@@ -62,7 +62,7 @@ export class ViewAdminComponent implements OnInit {
 
   getSiguienteTicket(){
     axios({
-      url: 'http://34.73.155.196/graphql/?',
+      url: 'http://35.196.156.187/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -92,7 +92,7 @@ export class ViewAdminComponent implements OnInit {
 
   updateTicket(status){ 
     axios({
-      url: 'http://34.73.155.196/graphql/?',
+      url: 'http://35.196.156.187/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -119,7 +119,7 @@ export class ViewAdminComponent implements OnInit {
 
   getTodosTickets(){
     axios({
-      url: 'http://34.73.155.196/graphql/?',
+      url: 'http://35.196.156.187/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -140,7 +140,7 @@ export class ViewAdminComponent implements OnInit {
 
   getUserInfo(){
     axios({
-      url: 'http://34.73.155.196/graphql/?',
+      url: 'http://35.196.156.187/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -162,7 +162,7 @@ export class ViewAdminComponent implements OnInit {
 
   actuTicketActivo(){
     axios({
-      url: 'http://34.73.155.196/graphql/?',
+      url: 'http://35.196.156.187/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -182,7 +182,7 @@ export class ViewAdminComponent implements OnInit {
 
   getEstadisticas(){
     axios({
-      url: 'http://34.73.155.196/graphql/?',
+      url: 'http://35.196.156.187/graphql/?',
       method: 'post',
       data: {
         query: `

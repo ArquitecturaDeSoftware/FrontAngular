@@ -28,7 +28,7 @@ export class ComponentAdminEditmenuComponent implements OnInit {
 
   actualizarMenu(soup, appetizer, main_course, protein, juice, dessert, salad){    
     axios({
-      url: 'http://34.73.155.196/graphql/?',
+      url: 'http://35.196.156.187/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -56,7 +56,7 @@ export class ComponentAdminEditmenuComponent implements OnInit {
 
   menusPorRestaurante(){
     axios({
-      url: 'http://34.73.155.196/graphql/?',
+      url: 'http://35.196.156.187/graphql/?',
       method: 'post',
       data: {
         query: `

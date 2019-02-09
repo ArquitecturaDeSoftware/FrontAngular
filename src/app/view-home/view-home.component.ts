@@ -37,7 +37,7 @@ export class ViewHomeComponent implements OnInit {
 
   getUsuario(value){
     axios({
-      url: 'http://34.73.155.196/graphql/?',
+      url: 'http://35.196.156.187/graphql/?',
       method: 'post',
       data: {
         query: `
@@ -68,7 +68,7 @@ export class ViewHomeComponent implements OnInit {
 
   crearUsuario(value){
     axios({
-      url: 'http://34.73.155.196/graphql/?',
+      url: 'http://35.196.156.187/graphql/?',
       method: 'post',
       data: {
         query: `

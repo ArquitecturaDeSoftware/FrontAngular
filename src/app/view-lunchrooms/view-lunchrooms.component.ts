@@ -20,7 +20,7 @@ export class ViewLunchroomsComponent implements OnInit {
 
   getLunchrooms(){
     axios({
-      url: 'http://34.73.155.196/graphql/?',
+      url: 'http://35.196.156.187/graphql/?',
       method: 'post',
       data: {
         query: `
