@@ -1,19 +1,19 @@
-FROM node:8
+FROM node:8.11.2-alpine as node
 
-# Create app directory
 WORKDIR /usr/src/app
-
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
 COPY package*.json ./
 
 RUN npm install
-RUN npm install -g @angular/cli@
 
 COPY . .
 
-EXPOSE 4201
-CMD [ "n", "serve" ]
+RUN npm run build
+
+# Stage 2
+FROM nginx:1.13.12-alpine
+
+COPY --from=node /usr/src/app/dist/FontAngular /usr/share/nginx/html
+
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
