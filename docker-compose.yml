@@ -3,6 +3,6 @@ services:
   front-angular:
     build: .
     ports:
-    - 4201:4201
+    - 80:80
 
 
